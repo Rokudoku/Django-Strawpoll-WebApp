@@ -10,11 +10,16 @@
 {% block content %}
 
 {% if latest_question_list %}
-    <ul>
+    <div>
     {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+        <div class="listable">
+            <div class="listable--title">
+                <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+            </div>
+            <p class="listable--date">{{ question.pub_date }}</p>
+        </div>
     {% endfor %}
-    </ul>
+    </div>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
