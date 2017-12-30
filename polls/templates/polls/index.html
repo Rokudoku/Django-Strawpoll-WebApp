@@ -1,10 +1,6 @@
 {% extends "polls/base.html" %}
 {% load static %}
 
-{% block style %}
-    <link rel="stylesheet" type="text/css" href="{% static 'polls/index.css' %}" />
-{% endblock %}
-
 {% block title %}Polls{% endblock %}
 
 {% block content %}
@@ -12,11 +8,11 @@
 {% if latest_question_list %}
     <div>
     {% for question in latest_question_list %}
-        <div class="listable">
-            <div class="listable--title">
+        <div class="question">
+            <div class="question-title">
                 <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
             </div>
-            <p class="listable--date">{{ question.pub_date }}</p>
+            <p class="question-date">{{ question.pub_date }}</p>
         </div>
     {% endfor %}
     </div>
