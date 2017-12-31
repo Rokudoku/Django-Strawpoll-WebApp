@@ -10,6 +10,12 @@ class Question(models.Model):
     def __str__(self):
         return self.question_text
 
+    def num_votes(self):
+        votes = 0
+        for choice in self.choice_set.all():
+            votes += choice.votes
+        return votes
+
     def was_published_recently(self):
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <= now

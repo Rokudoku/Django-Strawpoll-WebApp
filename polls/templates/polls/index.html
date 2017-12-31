@@ -12,6 +12,7 @@
             <div class="question-title">
                 <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
             </div>
+            <p class="question-other">{{ question.num_votes }}</p>
             <p class="question-date">{{ question.pub_date }}</p>
         </div>
     {% endfor %}
