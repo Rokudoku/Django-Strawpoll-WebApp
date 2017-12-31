@@ -1,18 +1,17 @@
 {% extends "polls/base.html" %}
-{% load static %}
 
 {% block title %}Polls{% endblock %}
 
 {% block content %}
 
 {% if latest_question_list %}
-    <div>
+    <div class="container">
     {% for question in latest_question_list %}
         <div class="question">
             <div class="question-title">
                 <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
             </div>
-            <p class="question-other">{{ question.num_votes }}</p>
+            <p class="question-other">{{ question.num_votes }} vote{{ question.num_votes|pluralize }}</p>
             <p class="question-date">{{ question.pub_date }}</p>
         </div>
     {% endfor %}

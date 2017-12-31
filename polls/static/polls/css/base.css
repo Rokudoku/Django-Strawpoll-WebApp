@@ -1,5 +1,10 @@
 body {
-    background-color: #aaaeae;
+    background-color: #484743;
+    color: whitesmoke;
 	font-family: "Verdana", sans-serif;
     margin: 0;
+}
+
+a {
+    color: whitesmoke;
 }
