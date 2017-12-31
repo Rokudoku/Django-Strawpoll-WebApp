@@ -4,8 +4,9 @@
 
 {% block content %}
 
+
 {% if latest_question_list %}
-    <div class="container">
+
     {% for question in latest_question_list %}
         <a class="question" href="{% url 'polls:detail' question.id %}">
             <div class="question-title">{{ question.question_text }}</div>
@@ -13,9 +14,10 @@
             <p class="question-date l-inline-right">{{ question.pub_date }}</p>
         </a>
     {% endfor %}
-    </div>
+
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
+
 
 {% endblock content %}

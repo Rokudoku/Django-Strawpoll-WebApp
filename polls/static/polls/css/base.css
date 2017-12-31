@@ -11,13 +11,20 @@
     -webkit-box-sizing: border-box;
 }
 
+* {
+    color: whitesmoke;
+}
+
 body {
     background-color: #484743;
-    color: whitesmoke;
 	font-family: "Verdana", sans-serif;
     margin: 0;
 }
 
 a {
-    color: whitesmoke;
+    text-decoration: none;
+}
+
+input {
+    background-color: #484743;
 }

@@ -2,18 +2,19 @@
     background-color: #2f4f52;
     border: 1px solid black;
     display: inline-block;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
     padding: 5px;
-    text-decoration: none;
     width: 100%;
 }
 
 .question-title {
-    font-size: 115%;
+    font-size: 110%;
     font-weight: bold;
 }
 .question > p {
-    font-size: small;
-    margin-top: 1px;
-    margin-bottom: 1px;
+    font-size: x-small;
+}
+
+.choices {
+
 }
