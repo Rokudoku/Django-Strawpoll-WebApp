@@ -1,3 +1,8 @@
+/*
+ * Note: classes in modules should not contain layout stuff to do with positioning/spacing/dimensions like
+ * width/height/margin unless under specific circumstances.
+ */
+
 .btn-group {
     margin: 10px 0;
 }
@@ -5,10 +10,8 @@
 .question {
     background-color: #2f4f52;
     border: 1px solid black;
-    display: inline-block;
-    margin-bottom: 5px;
+    display: block;
     padding: 5px;
-    width: 100%;
 }
 
 .question-title {

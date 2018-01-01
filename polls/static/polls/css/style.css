@@ -3,8 +3,133 @@
  * https://smacss.com/
  */
 
-@import 'base.css';
-@import 'layout.css';
-@import 'module.css';
-@import 'state.css';
-@import 'theme.css';
+/*
+==========================================================================
+BASE
+==========================================================================
+*/
+
+/*
+ * https://css-tricks.com/international-box-sizing-awareness-day/
+ * This feels like a necessity.
+ */
+*, *:before, *:after {
+    /* Firefox 29+, IE 8+, Chrome 10+, Safari 5.1+, Opera 9.5+, iOS 5+, Opera Mini Anything, Blackberry 10+, Android 4+ */
+    box-sizing: border-box;
+    /* Firefox (desktop or Android) 28- */
+    -moz-box-sizing: border-box;
+    /* Chrome 9-, Safari 5-, iOS 4.2-, Android 3-, Blackberry 7- */
+    -webkit-box-sizing: border-box;
+}
+
+* {
+    color: whitesmoke;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background-color: #484743;
+	font-family: "Verdana", sans-serif;
+    margin: 0;
+}
+
+button {
+    background-color: #2f4f52;
+    border: none;
+    display: block;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
+input[type="radio"] {
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+input[type="radio"] + label {
+    cursor: pointer;
+}
+
+/*
+==========================================================================
+LAYOUT
+==========================================================================
+*/
+.l-inline-left {
+    display: inline;
+    float: left;
+}
+
+.l-inline-right {
+    display: inline;
+    float: right;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header {
+    background-color: black;
+    padding: 0.5em 1em;
+}
+
+.wrapper {
+    background-color: #4c8588;
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    /*margin-top: 20px;*/
+    max-width: 1200px;
+    min-height: 800px;
+    padding: 20px;
+}
+
+/*
+==========================================================================
+MODULE
+==========================================================================
+*/
+.btn-group {
+    margin: 10px 0;
+}
+
+.question {
+    background-color: #2f4f52;
+    border: 1px solid black;
+    display: block;
+    overflow: auto;
+    padding: 5px;
+}
+
+.question-title {
+    font-size: 110%;
+    font-weight: bold;
+}
+.question-other {
+    font-size: x-small;
+}
+
+/*
+==========================================================================
+STATE
+==========================================================================
+*/
+.is-error {
+    background-color: #8a2327;
+    border: 1px solid black;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/*
+==========================================================================
+THEME
+==========================================================================
+*/
