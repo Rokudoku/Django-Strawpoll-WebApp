@@ -1,3 +1,7 @@
+.btn-group {
+    margin: 10px 0;
+}
+
 .question {
     background-color: #2f4f52;
     border: 1px solid black;
@@ -11,10 +15,6 @@
     font-size: 110%;
     font-weight: bold;
 }
-.question > p {
+.question-other {
     font-size: x-small;
-}
-
-.choices {
-
 }

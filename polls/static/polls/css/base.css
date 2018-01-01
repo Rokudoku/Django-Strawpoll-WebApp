@@ -15,16 +15,31 @@
     color: whitesmoke;
 }
 
+a {
+    text-decoration: none;
+}
+
 body {
     background-color: #484743;
 	font-family: "Verdana", sans-serif;
     margin: 0;
 }
 
-a {
+button {
+    background-color: #2f4f52;
+    border: none;
+    display: block;
+    padding: 15px 20px;
+    text-align: center;
     text-decoration: none;
 }
 
-input {
-    background-color: #484743;
+input[type="radio"] {
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+input[type="radio"] + label {
+    cursor: pointer;
+
 }
