@@ -4,22 +4,23 @@
 
 {% block content %}
 
-<h1>{{ question.question_text }}</h1><hr />
-
-{% if error_message %}
-    <div class="is-error"><p>{{ error_message }}</p></div>
-{% endif %}
-
-<form action="{% url 'polls:vote' question.id %}" method="post">
-{% csrf_token %}
-{% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
-{% endfor %}
-    <hr>
-    <div class="btn-group">
-        <button type="submit" value="Vote">Vote</button>
+    <div class="container">
+        <h1>{{ question.question_text }}</h1>
+        <hr />
+        {% if error_message %}
+            <div class="is-error"><p>{{ error_message }}</p></div>
+        {% endif %}
+        <form action="{% url 'polls:vote' question.id %}" method="post">
+        {% csrf_token %}
+            {% for choice in question.choice_set.all %}
+                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+            {% endfor %}
+            <hr>
+            <div class="btn-group">
+                <button type="submit" value="Vote">Vote</button>
+            </div>
+        </form>
     </div>
-</form>
 
 {% endblock %}

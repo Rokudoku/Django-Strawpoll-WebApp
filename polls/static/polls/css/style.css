@@ -59,35 +59,18 @@ input[type="radio"] + label {
 LAYOUT
 ==========================================================================
 */
-.l-inline-left {
-    display: inline;
-    float: left;
-}
-
-.l-inline-right {
-    display: inline;
-    float: right;
-}
-
-.container {
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .header {
     background-color: black;
-    padding: 0.5em 1em;
+    padding: 10px 20px;
 }
 
-.wrapper {
+.main-content {
     background-color: #4c8588;
     border: 1px solid black;
     margin-left: auto;
     margin-right: auto;
-    /*margin-top: 20px;*/
     max-width: 1200px;
     min-height: 800px;
-    padding: 20px;
 }
 
 /*
@@ -95,24 +78,37 @@ LAYOUT
 MODULE
 ==========================================================================
 */
+
 .btn-group {
     margin: 10px 0;
+}
+
+.container {
+    margin: 30px 20px;
 }
 
 .question {
     background-color: #2f4f52;
     border: 1px solid black;
     display: block;
+    margin-bottom: 3px;
     overflow: auto;
     padding: 5px;
 }
-
 .question-title {
     font-size: 110%;
     font-weight: bold;
 }
-.question-other {
+.question > p {
     font-size: x-small;
+}
+.question-text-right {
+    display: inline;
+    float: right;
+}
+.question-text-left {
+    display: inline;
+    float: left;
 }
 
 /*

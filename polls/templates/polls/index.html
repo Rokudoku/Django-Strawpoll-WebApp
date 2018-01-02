@@ -4,20 +4,20 @@
 
 {% block content %}
 
-
-{% if latest_question_list %}
-
-    {% for question in latest_question_list %}
-        <a class="question" href="{% url 'polls:detail' question.id %}">
-            <div class="question-title">{{ question.question_text }}</div>
-            <p class="question-other l-inline-left">{{ question.num_votes }} vote{{ question.num_votes|pluralize }}</p>
-            <p class="question-other l-inline-right">{{ question.pub_date }}</p>
-        </a>
-    {% endfor %}
-
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
-
+    <div class="container">
+        <h1>Polls</h1>
+        <hr />
+        {% if latest_question_list %}
+            {% for question in latest_question_list %}
+                <a class="question" href="{% url 'polls:detail' question.id %}">
+                    <div class="question-title">{{ question.question_text }}</div>
+                    <p class="question-text-left">{{ question.num_votes }} vote{{ question.num_votes|pluralize }}</p>
+                    <p class="question-text-right">{{ question.pub_date }}</p>
+                </a>
+            {% endfor %}
+        {% else %}
+            <p>No polls are available.</p>
+        {% endif %}
+    </div>
 
 {% endblock content %}
