@@ -64,6 +64,16 @@ LAYOUT
     padding: 10px 20px;
 }
 
+.navbar {
+    background-color: darkgray;
+    overflow: auto;
+}
+.navbar-link {
+    display: inline-block;
+    padding: 10px 40px;
+    text-decoration: none;
+}
+
 .main-content {
     background-color: #4c8588;
     border: 1px solid black;
@@ -109,6 +119,11 @@ MODULE
 .question-text-left {
     display: inline;
     float: left;
+}
+
+.result {
+    /* plan here is to have a width that is determined by the percentage of votes/total-votes... will need to be done
+    with javascript though i think, so will do this a little bit later. */
 }
 
 /*

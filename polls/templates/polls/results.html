@@ -7,9 +7,9 @@
     <div class="container">
         <h1>{{ question.question_text }}</h1>
         <hr />
-        <ul>
         {% for choice in question.choice_set.all %}
-            <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+            <p>{{ choice.choice_text }}</p>
+            <div class="result">{{ choice.votes }}</div>
         {% endfor %}
         </ul>
         <hr />
