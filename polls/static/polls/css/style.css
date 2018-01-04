@@ -122,8 +122,6 @@ MODULE
 }
 
 .result {
-    /* plan here is to have a width that is determined by the percentage of votes/total-votes... will need to be done
-    with javascript though i think, so will do this a little bit later. */
     background-color: cornflowerblue;
 }
 

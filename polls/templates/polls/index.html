@@ -11,7 +11,7 @@
             {% for question in latest_question_list %}
                 <a class="question" href="{% url 'polls:detail' question.id %}">
                     <div class="question-title">{{ question.question_text }}</div>
-                    <p class="question-text-left">{{ question.num_votes }} vote{{ question.num_votes|pluralize }}</p>
+                    <p class="question-text-left">{{ question.total_votes }} vote{{ question.total_votes|pluralize }}</p>
                     <p class="question-text-right">{{ question.pub_date }}</p>
                 </a>
             {% endfor %}
