@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
 
-from .models import Question
+from .models import Question, Choice
 
 def create_question(question_text, days):
     """
@@ -14,6 +14,14 @@ def create_question(question_text, days):
     """
     time = timezone.now() + datetime.timedelta(days=days)
     return Question.objects.create(question_text=question_text, pub_date=time)
+
+def create_choice(question, choice_text, votes):
+    """
+    Create a choice with the given 'choice_text' and 'votes' that is part of
+    the choice_set of the given Question 'question'.
+    """
+    question.choice_set.create(choice_text=choice_text, votes=votes)
+
 
 class QuestionModelTests(TestCase):
 
