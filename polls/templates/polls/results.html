@@ -17,3 +17,17 @@
     </div>
 
 {% endblock content %}
+
+{% block scripts %}
+    <script>
+    $(function() {
+        'use strict';
+        var total_votes = {{ question.total_votes }};
+        // for each result, make the width = (num_votes/total_votes*100)%
+        $('.result').each(function() {
+            var num_votes = $(this).html();
+            $(this).css('width', (num_votes/total_votes*100)+'%');
+        });
+    })
+    </script>
+{% endblock %}

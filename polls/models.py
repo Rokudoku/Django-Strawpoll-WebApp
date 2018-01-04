@@ -10,7 +10,7 @@ class Question(models.Model):
     def __str__(self):
         return self.question_text
 
-    def num_votes(self):
+    def total_votes(self):
         votes = 0
         for choice in self.choice_set.all():
             votes += choice.votes
