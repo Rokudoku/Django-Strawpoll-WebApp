@@ -121,6 +121,23 @@ MODULE
     float: left;
 }
 
+.pagination {
+    display: flex;
+    justify-content: space-between;
+}
+.pagination-current {
+    text-align: center;
+    /*width: 200px;*/
+}
+.pagination-next {
+    text-align: right;
+    /*width: 200px;*/
+}
+.pagination-prev {
+    text-align: left;
+    /*width: 200px;*/
+}
+
 .result {
     background-color: cornflowerblue;
 }
