@@ -19,23 +19,21 @@
                 <div class="pagination">
                     <div class="pagination-prev">
                         {% if page_obj.has_previous %}
-                            <a href="?page=1">&laquo; first</a>
-                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">prev</a>
                         {% endif %}
                     </div>
                     <div class="pagination-current">
-                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
                     </div>
                     <div class="pagination-next">
                         {% if page_obj.has_next %}
                             <a href="?page={{ page_obj.next_page_number }}">next</a>
-                            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
                         {% endif %}
                     </div>
                 </div>
             {% else %}
                 <div class="pagination-current">
-                    Page 1 of 1.
+                    Page 1 of 1
                 </div>
             {% endif %}
         {% else %}

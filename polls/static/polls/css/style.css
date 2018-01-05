@@ -122,18 +122,19 @@ MODULE
 }
 
 .pagination {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr)
 }
 .pagination-current {
+    flex: 2;
     text-align: center;
-    /*width: 200px;*/
 }
 .pagination-next {
+    flex: 3;
     text-align: right;
-    /*width: 200px;*/
 }
 .pagination-prev {
+    flex: 1;
     text-align: left;
     /*width: 200px;*/
 }
