@@ -66,6 +66,7 @@ LAYOUT
 
 .navbar {
     background-color: darkgray;
+    border: 1px solid black;
     overflow: auto;
 }
 .navbar-link {
@@ -77,10 +78,12 @@ LAYOUT
 .main-content {
     background-color: #4c8588;
     border: 1px solid black;
+    border-top: 0;
     margin-left: auto;
     margin-right: auto;
     max-width: 1200px;
     min-height: 800px;
+    overflow: auto;
 }
 
 /*
@@ -111,10 +114,6 @@ MODULE
 }
 .question > p {
     font-size: x-small;
-}
-.question-title {
-    font-size: 110%;
-    font-weight: bold;
 }
 .question-text-right {
     display: inline;
@@ -148,6 +147,8 @@ MODULE
 
 .result {
     background-color: cornflowerblue;
+    padding-right: 0.5em;
+    text-align: end;
 }
 
 /*
