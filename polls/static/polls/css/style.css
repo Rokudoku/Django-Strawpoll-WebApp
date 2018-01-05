@@ -97,20 +97,24 @@ MODULE
     margin: 30px 20px;
 }
 
+.question-list {
+    border: 1px solid black;
+    border-bottom: 0;
+    margin: 1em 0;
+}
 .question {
     background-color: #2f4f52;
-    border: 1px solid black;
+    border-bottom: 1px solid black;
     display: block;
-    margin-bottom: 3px;
     overflow: auto;
     padding: 5px;
+}
+.question > p {
+    font-size: x-small;
 }
 .question-title {
     font-size: 110%;
     font-weight: bold;
-}
-.question > p {
-    font-size: x-small;
 }
 .question-text-right {
     display: inline;
@@ -123,20 +127,23 @@ MODULE
 
 .pagination {
     display: grid;
-    grid-template-columns: repeat(3, 1fr)
+    grid-column-gap: 1em;
+    grid-template-columns: 1fr auto 1fr;
+    /* should be same height as the fa icons to prevent jerky movements while loading */
+    height: 2em;
 }
 .pagination-current {
+    align-self: center;
     flex: 2;
     text-align: center;
 }
 .pagination-next {
     flex: 3;
-    text-align: right;
+    text-align: left;
 }
 .pagination-prev {
     flex: 1;
-    text-align: left;
-    /*width: 200px;*/
+    text-align: right;
 }
 
 .result {
