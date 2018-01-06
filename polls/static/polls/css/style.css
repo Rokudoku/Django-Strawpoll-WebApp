@@ -45,6 +45,10 @@ button {
     text-decoration: none;
 }
 
+hr {
+    margin: 1.5em 0;
+}
+
 input[type="radio"] {
     cursor: pointer;
     margin-top: 10px;

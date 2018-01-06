@@ -1,5 +1,7 @@
 {% extends "polls/base.html" %}
 
+{% load humanize %} {# using this for <time> ago format #}
+
 {% block title %}Polls{% endblock %}
 
 {% block content %}
@@ -13,7 +15,7 @@
                 <a class="question" href="{% url 'polls:detail' question.id %}">
                     <h4>{{ question.question_text }}</h4>
                     <p class="question-text-left">{{ question.total_votes }} vote{{ question.total_votes|pluralize }}</p>
-                    <p class="question-text-right">{{ question.pub_date }}</p>
+                    <p class="question-text-right">{{ question.pub_date|naturaltime }}</p>
                 </a>
             {% endfor %}
             </div>
