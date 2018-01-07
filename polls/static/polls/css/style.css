@@ -116,6 +116,9 @@ MODULE
     overflow: auto;
     padding: 5px;
 }
+.question:hover {
+    background-color: #193a3d;
+}
 .question > p {
     font-size: x-small;
 }

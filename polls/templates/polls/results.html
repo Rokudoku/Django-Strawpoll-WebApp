@@ -22,11 +22,14 @@
     <script>
     $(function() {
         'use strict';
+{#        var percentages = [];#}
         var total_votes = {{ question.total_votes }};
         // for each result, make the width = (num_votes/total_votes*100)%
         $('.result').each(function() {
             var num_votes = $(this).html();
-            $(this).css('width', (num_votes/total_votes*100)+'%');
+            var percentage = Math.round(num_votes/total_votes * 100).toFixed(2);
+{#            percentages.push(percentage);#}
+            $(this).css('width', percentage + '%');
         });
     })
     </script>
