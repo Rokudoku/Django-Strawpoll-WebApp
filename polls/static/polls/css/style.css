@@ -50,9 +50,9 @@ hr {
 }
 
 input[type="radio"] {
-    cursor: pointer;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 1em 0;
+    /* using custom radio buttons */
+    opacity: 0;
 }
 input[type="radio"] + label {
     cursor: pointer;
@@ -163,6 +163,7 @@ MODULE
 STATE
 ==========================================================================
 */
+
 .is-error {
     background-color: #8a2327;
     border: 1px solid black;
