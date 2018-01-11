@@ -12,15 +12,19 @@
         {% if latest_question_list %}
             <div class="question-list">
             {% for question in latest_question_list %}
-{#                <div class="question" onclick="location.href='{% url 'polls:detail' question.id %}'">#}
-
-                <a class="question" href="{% url 'polls:detail' question.id %}">
+                <!-- main part of question -->
+                <div class="question" onclick="location.href='{% url 'polls:detail' question.id %}'">
                     <h4 class="question-title">{{ question.question_text }}</h4>
-                    <i class="question-dropdown-icon far fa-caret-square-down fa-lg"></i>
+                    <span class="question-dropdown-icon" dropdown-id="dropdown{{ question.id }}">
+                        <i class="far fa-caret-square-down fa-lg"></i>
+                    </span>
                     <p class="question-text-left">{{ question.total_votes }} vote{{ question.total_votes|pluralize }}</p>
                     <p class="question-text-right">{{ question.pub_date|naturaltime }}</p>
-{#                </div>#}
-                </a>
+                </div>
+                <!-- dropdown of question -->
+                <div class="question-dropdown" id="dropdown{{ question.id }}">
+                    Test
+                </div>
             {% endfor %}
             </div>
             {% if is_paginated %}
@@ -54,3 +58,32 @@
     </div>
 
 {% endblock content %}
+
+{% block scripts %}
+    <script>
+    $(function() {
+        'use strict';
+        var icon_closed = 'fa-caret-square-down';
+        var icon_open = 'fa-caret-square-up';
+
+        var $dropdown_icon = $('.question-dropdown-icon');
+
+        $dropdown_icon.each(function() {
+            var id = $(this).attr('dropdown-id');
+            console.log(id);
+        });
+
+        $dropdown_icon.click(function(event) {
+            // find the dropdown associated with this icon
+            var dropdown = $('#' + $(this).attr('dropdown-id'));
+            // prevent getting sent to question detail page
+            event.stopPropagation();
+            // toggle the icon
+            $(this).find('[data-fa-processed]')
+                .toggleClass(icon_open)
+                .toggleClass(icon_closed);
+            dropdown.slideToggle();
+        });
+    })
+    </script>
+{% endblock %}

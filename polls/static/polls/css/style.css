@@ -145,6 +145,9 @@ MODULE
     grid-row: 2;
     justify-self: flex-end;
 }
+.question-dropdown {
+    display: none;
+}
 
 .pagination {
     display: grid;
