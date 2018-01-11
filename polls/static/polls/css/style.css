@@ -71,7 +71,7 @@ LAYOUT
 }
 
 .navbar {
-    background-color: darkgray;
+    background-color: #2f4f52;
     border: 1px solid black;
     overflow: auto;
 }
@@ -79,6 +79,9 @@ LAYOUT
     display: inline-block;
     padding: 10px 40px;
     text-decoration: none;
+}
+.navbar-link:hover {
+    background-color: #193a3d;
 }
 
 .main-content {
@@ -114,23 +117,33 @@ MODULE
 .question {
     background-color: #2f4f52;
     border-bottom: 1px solid black;
-    display: block;
-    overflow: auto;
+    display: grid;
     padding: 5px;
 }
 .question:hover {
     background-color: #193a3d;
 }
+.question-title {
+    grid-column: 1;
+    grid-row: 1;
+}
+.question-dropdown-icon {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: flex-end;
+}
 .question > p {
     font-size: x-small;
 }
-.question-text-right {
-    display: inline;
-    float: right;
-}
 .question-text-left {
-    display: inline;
-    float: left;
+    grid-column: 1/3;
+    grid-row: 2;
+    justify-self: flex-start;
+}
+.question-text-right {
+    grid-column: 1/3;
+    grid-row: 2;
+    justify-self: flex-end;
 }
 
 .pagination {
