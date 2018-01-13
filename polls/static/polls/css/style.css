@@ -118,7 +118,7 @@ MODULE
     background-color: #2f4f52;
     border-bottom: 1px solid black;
     display: grid;
-    padding: 5px;
+    padding: 0.5em;
 }
 .question:hover {
     background-color: #193a3d;
@@ -128,6 +128,7 @@ MODULE
     grid-row: 1;
 }
 .question-dropdown-icon {
+    cursor: pointer;
     grid-column: 2;
     grid-row: 1;
     justify-self: flex-end;
@@ -146,7 +147,10 @@ MODULE
     justify-self: flex-end;
 }
 .question-dropdown {
+    background-color: #3c6063;
+    border-bottom: 1px black solid;
     display: none;
+    padding: 0.1em;
 }
 
 .pagination {
@@ -186,6 +190,7 @@ STATE
     background-color: #8a2327;
     border: 1px solid black;
     margin-bottom: 10px;
+    opacity: 0.8;
     padding-left: 10px;
     padding-right: 10px;
 }

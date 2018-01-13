@@ -13,9 +13,12 @@
             <div class="question-list">
             {% for question in latest_question_list %}
                 <!-- main part of question -->
-                <div class="question" onclick="location.href='{% url 'polls:detail' question.id %}'">
-                    <h4 class="question-title">{{ question.question_text }}</h4>
-                    <span class="question-dropdown-icon" dropdown-id="dropdown{{ question.id }}">
+{#                <div class="question" onclick="location.href='{% url 'polls:detail' question.id %}'">#}
+                <div class="question">
+                    <h4 class="question-title">
+                        <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+                    </h4>
+                    <span class="question-dropdown-icon" title="Preview" dropdown-id="dropdown{{ question.id }}">
                         <i class="far fa-caret-square-down fa-lg"></i>
                     </span>
                     <p class="question-text-left">{{ question.total_votes }} vote{{ question.total_votes|pluralize }}</p>
@@ -23,7 +26,11 @@
                 </div>
                 <!-- dropdown of question -->
                 <div class="question-dropdown" id="dropdown{{ question.id }}">
-                    Test
+                    <ul>
+                    {% for choice in question.choice_set.all %}
+                        <li>{{ choice.choice_text }}</li>
+                    {% endfor %}
+                    </ul>
                 </div>
             {% endfor %}
             </div>
@@ -68,20 +75,16 @@
 
         var $dropdown_icon = $('.question-dropdown-icon');
 
-        $dropdown_icon.each(function() {
-            var id = $(this).attr('dropdown-id');
-            console.log(id);
-        });
-
         $dropdown_icon.click(function(event) {
             // find the dropdown associated with this icon
             var dropdown = $('#' + $(this).attr('dropdown-id'));
-            // prevent getting sent to question detail page
-            event.stopPropagation();
+            // prevent getting sent to question detail page (if the entire question is a link)
+{#            event.stopPropagation();#}
             // toggle the icon
             $(this).find('[data-fa-processed]')
                 .toggleClass(icon_open)
                 .toggleClass(icon_closed);
+            // slide up/down the dropdown
             dropdown.slideToggle();
         });
     })
