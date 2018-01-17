@@ -22,6 +22,8 @@ BASE
     -webkit-box-sizing: border-box;
 }
 
+/* Honestly not sure if this is a good idea but I am going for an opt-out approach for white text instead of an opt-in
+   approach (because I am much more likely to want white text than black). */
 * {
     color: whitesmoke;
 }
@@ -47,6 +49,10 @@ button {
 
 hr {
     margin: 1.5em 0;
+}
+
+input {
+    color: black;
 }
 
 input[type="radio"] {
@@ -107,6 +113,12 @@ MODULE
 
 .container {
     margin: 30px 20px;
+}
+
+.create-form #id_question_text {
+    margin-bottom: 1.5em;
+    padding: 0.5em;
+    width: 100%;
 }
 
 .question-list {

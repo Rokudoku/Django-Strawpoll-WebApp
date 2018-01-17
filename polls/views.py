@@ -1,6 +1,6 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.views import generic
 
@@ -41,6 +41,11 @@ class ResultsView(generic.DetailView):
         """
         return Question.objects.filter(pub_date__lte=timezone.now())
 
+
+class QuestionDelete(generic.edit.DeleteView):
+    model = Question
+    success_url = reverse_lazy('polls/index')
+
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
@@ -71,4 +76,4 @@ def manage_question(request):
     else:
         # create blank form
         form = QuestionForm()
-    return render(request, 'polls/question.html', {'form': form})
+    return render(request, 'polls/create.html', {'form': form})
