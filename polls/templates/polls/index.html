@@ -31,6 +31,7 @@
                         <li>{{ choice.choice_text }}</li>
                     {% endfor %}
                     </ul>
+                    <a href="{% url 'polls:delete' question.id %}">Delete</a>
                 </div>
             {% endfor %}
             </div>

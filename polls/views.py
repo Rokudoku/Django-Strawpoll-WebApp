@@ -44,7 +44,8 @@ class ResultsView(generic.DetailView):
 
 class QuestionDelete(generic.edit.DeleteView):
     model = Question
-    success_url = reverse_lazy('polls/index')
+    success_url = reverse_lazy('polls:index')
+    template_name = 'polls/confirm_delete.html'
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
