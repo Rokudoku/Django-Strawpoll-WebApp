@@ -1,11 +1,12 @@
+from django.forms import modelformset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.views import generic
 
-from .forms import QuestionForm
-from .models import Choice, Question
+from .forms import QuestionForm, ChoiceForm
+from .models import Question, Choice
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -66,15 +67,19 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 def manage_question(request):
-    if request.method == "POST":
-        # create form and populate with data from request
-        form = QuestionForm(request.POST)
-        if form.is_valid():
-            new_question = form.save(commit=False)
-            new_question.pub_date = timezone.now()
-            new_question.save()
-            return HttpResponseRedirect(reverse('polls:index'))
-    else:
-        # create blank form
-        form = QuestionForm()
-    return render(request, 'polls/create.html', {'form': form})
+    # empty form if no post data
+    form = QuestionForm(request.POST or None)
+
+    ChoiceFormset = modelformset_factory(Choice, form=ChoiceForm)
+    queryset = Choice.objects.filter(question=request.question_id)
+    formset = ChoiceFormset(request.POST or None, queryset)
+    if form.is_valid():
+        new_question = form.save(commit=False)
+        new_question.pub_date = timezone.now()
+        new_question.save()
+        return HttpResponseRedirect(reverse('polls:index'))
+    context = {
+        'form': form,
+        'formset': formset,
+    }
+    return render(request, 'polls/create.html', context)

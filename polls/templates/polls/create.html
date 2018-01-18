@@ -15,6 +15,11 @@
             <button type="submit" value="Submit">Submit</button>
         </form>
 
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ formset }}
+        </form>
+
     </div>
 
 {% endblock %}
