@@ -12,12 +12,8 @@
             {% csrf_token %}
             <h4>Your Question</h4>
             {{ form.question_text }}
-            <button type="submit" value="Submit">Submit</button>
-        </form>
-
-        <form method="post" action="">
-            {% csrf_token %}
             {{ formset }}
+            <button type="submit" value="Submit">Submit</button>
         </form>
 
     </div>

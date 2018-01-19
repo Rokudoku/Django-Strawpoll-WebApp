@@ -1,4 +1,4 @@
-from django.forms import modelformset_factory
+from django.forms import formset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse, reverse_lazy
@@ -73,10 +73,10 @@ def create_question(request):
     # empty form if no post data
     form = QuestionForm(request.POST or None)
 
-    ChoiceFormset = modelformset_factory(Choice, form=ChoiceForm)
-    queryset = Choice.objects.filter(question=request.question_id)
-    formset = ChoiceFormset(request.POST or None, queryset)
-    if form.is_valid():
+    ChoiceFormset = formset_factory(ChoiceForm, min_num=2, extra=18)
+    formset = ChoiceFormset(request.POST or None)
+    print(request.POST)
+    if form.is_valid() and formset.is_valid():
         new_question = form.save(commit=False)
         new_question.pub_date = timezone.now()
         new_question.save()
