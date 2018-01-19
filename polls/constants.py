@@ -1,0 +1,5 @@
+# Question Model
+QUESTION_TEXT_LENGTH = 200
+
+# Choice Model
+CHOICE_TEXT_LENGTH = 200

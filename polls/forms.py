@@ -1,14 +1,14 @@
-from django.forms import ModelForm, Textarea
+from django import forms
 
 from .models import Choice, Question
 
+from . import constants
 
-class QuestionForm(ModelForm):
+
+class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question
         fields = ['question_text']
 
-class ChoiceForm(ModelForm):
-    class Meta:
-        model = Choice
-        fields = ['choice_text']
+class ChoiceForm(forms.Form):
+    choice_text = forms.CharField(max_length=constants.CHOICE_TEXT_LENGTH)

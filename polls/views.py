@@ -66,7 +66,10 @@ def vote(request, question_id):
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
-def manage_question(request):
+def create_question(request):
+    """
+    Make a Question by submitting the question title and the text for the Choices in a form.
+    """
     # empty form if no post data
     form = QuestionForm(request.POST or None)
 
