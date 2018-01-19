@@ -71,18 +71,18 @@ def create_question(request):
     Make a Question by submitting the question title and the text for the Choices in a form.
     """
     # empty form if no post data
-    form = QuestionForm(request.POST or None)
+    q_form = QuestionForm(request.POST or None)
 
-    ChoiceFormset = formset_factory(ChoiceForm, min_num=2, extra=18)
-    formset = ChoiceFormset(request.POST or None)
+    ChoiceFormset = formset_factory(ChoiceForm, min_num=2, extra=0, can_delete=True)
+    c_formset = ChoiceFormset(request.POST or None)
     print(request.POST)
-    if form.is_valid() and formset.is_valid():
-        new_question = form.save(commit=False)
+    if q_form.is_valid() and c_formset.is_valid():
+        new_question = q_form.save(commit=False)
         new_question.pub_date = timezone.now()
         new_question.save()
         return HttpResponseRedirect(reverse('polls:index'))
     context = {
-        'form': form,
-        'formset': formset,
+        'q_form': q_form,
+        'c_formset': c_formset,
     }
     return render(request, 'polls/create.html', context)

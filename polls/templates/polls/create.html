@@ -11,8 +11,16 @@
         <form class="create-form" method="post" action="">
             {% csrf_token %}
             <h4>Your Question</h4>
-            {{ form.question_text }}
-            {{ formset }}
+            {{ q_form.question_text }}
+
+            <h4>Choices</h4>
+            {{ c_formset.management_form }}
+            {% for form in c_formset %}
+                {% for error in form.choice_text.errors %}
+                    <span class="is-error">{{ error }}</span>
+                {% endfor %}
+                {{ form.choice_text }}
+            {% endfor %}
             <button type="submit" value="Submit">Submit</button>
         </form>
 
