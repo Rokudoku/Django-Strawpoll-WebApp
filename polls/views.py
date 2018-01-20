@@ -73,7 +73,7 @@ def create_question(request):
     # empty form if no post data
     q_form = QuestionForm(request.POST or None)
 
-    ChoiceFormset = formset_factory(ChoiceForm, min_num=2, extra=0, can_delete=True)
+    ChoiceFormset = formset_factory(ChoiceForm, min_num=2, extra=0)
     c_formset = ChoiceFormset(request.POST or None)
     print(request.POST)
     if q_form.is_valid() and c_formset.is_valid():

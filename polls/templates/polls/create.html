@@ -12,16 +12,25 @@
             {% csrf_token %}
             <h4>Your Question</h4>
             {{ q_form.question_text }}
-
+            <hr />
             <h4>Choices</h4>
             {{ c_formset.management_form }}
             {% for form in c_formset %}
                 {% for error in form.choice_text.errors %}
                     <span class="is-error">{{ error }}</span>
                 {% endfor %}
-                {{ form.choice_text }}
+                <div class="l-2-col">
+                    <div class="l-2-col-left">
+                        {{ form.choice_text }}
+                    </div>
+                    <div class="l-2-col-right">
+                        <i class="fas fa-times fa-lg is-clickable"></i>
+                    </div>
+                </div>
             {% endfor %}
-            <button type="submit" value="Submit">Submit</button>
+            <button class="btn" type="button" id="add-choice">Add Choice</button>
+            <hr />
+            <button class="btn" type="submit" value="Submit">Submit</button>
         </form>
 
     </div>

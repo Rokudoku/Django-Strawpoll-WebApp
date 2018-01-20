@@ -32,19 +32,27 @@ a {
     text-decoration: none;
 }
 
+button {
+    border: none;
+    display: block;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+}
+button:hover {
+    cursor: pointer;
+}
+
 body {
     background-color: #484743;
 	font-family: "Verdana", sans-serif;
     margin: 0;
 }
 
-button {
-    background-color: #2f4f52;
-    border: none;
-    display: block;
-    padding: 15px 20px;
-    text-align: center;
-    text-decoration: none;
+form input[type="text"] {
+    margin-bottom: 1em;
+    padding: 0.5em;
+    width: 100%;
 }
 
 hr {
@@ -71,9 +79,23 @@ input[type="radio"] + label {
 LAYOUT
 ==========================================================================
 */
+
 .header {
     background-color: black;
     padding: 10px 20px;
+}
+
+/* split into 2 columns */
+.l-2-col {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+.l-2-col-left {
+    grid-column: 1;
+}
+.l-2-col-right {
+    grid-column: 2;
+    justify-self: flex-end;
 }
 
 .navbar {
@@ -107,18 +129,16 @@ MODULE
 ==========================================================================
 */
 
+.btn {
+    background-color: #2f4f52;
+}
+
 .btn-group {
     margin: 10px 0;
 }
 
 .container {
     margin: 30px 20px;
-}
-
-.create-form input[type="text"] {
-    margin-bottom: 1em;
-    padding: 0.5em;
-    width: 100%;
 }
 
 .question-list {
@@ -140,7 +160,6 @@ MODULE
     grid-row: 1;
 }
 .question-dropdown-icon {
-    cursor: pointer;
     grid-column: 2;
     grid-row: 1;
     justify-self: flex-end;
@@ -197,6 +216,10 @@ MODULE
 STATE
 ==========================================================================
 */
+
+.is-clickable:hover {
+    cursor: pointer;
+}
 
 .is-error {
     background-color: #8a2327;
