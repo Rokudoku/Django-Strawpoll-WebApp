@@ -8,6 +8,7 @@
 
         <h1>Create a question</h1>
         <hr/>
+
         <form class="create-form" method="post" action="">
             {% csrf_token %}
             <h4>Your Question</h4>
@@ -15,19 +16,36 @@
             <hr />
             <h4>Choices</h4>
             {{ c_formset.management_form }}
-            {% for form in c_formset %}
-                {% for error in form.choice_text.errors %}
-                    <span class="is-error">{{ error }}</span>
+
+            <div class="choice-formset">
+                {% for form in c_formset %}
+                    {% for error in form.choice_text.errors %}
+                        <span class="is-error">{{ error }}</span>
+                    {% endfor %}
+                    <div class="l-2-col">
+                        <div class="l-2-col-left">
+                            {{ form.choice_text }}
+                        </div>
+                        <div class="l-2-col-right">
+                            <i class="fas fa-times fa-lg is-clickable"></i>
+                        </div>
+                    </div>
                 {% endfor %}
+            </div>
+            <!-- A template for making an empty choice form. -->
+            <script type="text/html" id="empty-choice-form">
+            <div id="choice-form-__prefix__">
                 <div class="l-2-col">
                     <div class="l-2-col-left">
-                        {{ form.choice_text }}
+                        {{ c_formset.empty_form.choice_text }}
                     </div>
                     <div class="l-2-col-right">
                         <i class="fas fa-times fa-lg is-clickable"></i>
                     </div>
                 </div>
-            {% endfor %}
+            </div>
+            </script>
+
             <button class="btn" type="button" id="add-choice">Add Choice</button>
             <hr />
             <button class="btn" type="submit" value="Submit">Submit</button>
@@ -35,4 +53,36 @@
 
     </div>
 
+{% endblock %}
+
+{% block scripts %}
+    <script>
+    $(function() {
+        'use strict';
+        const MAX_FORMS = 20;
+
+        var $add_button = $('#add-choice');
+        var $template = $('#empty-choice-form').html();
+        var $choice_formset = $('.choice-formset');
+
+        // initialise number of forms to the amount already existing (depending on 'extra' and 'min_num' formset params)
+        var num_choice_forms = $('#choice-formset').children().length;
+
+        $add_button.click(function(event) {
+            if (num_choice_forms >= MAX_FORMS) {
+                alert('Sorry, ' + MAX_FORMS + ' choices maximum.');
+            } else {
+                // make an empty choice form with the correct id using the template
+                var choice_form = $template.replace(/__prefix__/g, num_choice_forms);
+                // add it into the formset
+                $choice_formset.append(choice_form);
+                // update the number of choice forms
+                num_choice_forms += 1;
+                // tell the formset that the total forms have increased
+                $('#id_form-TOTAL_FORMS').attr('value', num_choice_forms)
+            }
+            console.log(num_choice_forms);
+        });
+    })
+    </script>
 {% endblock %}
