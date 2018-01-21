@@ -60,6 +60,7 @@
     $(function() {
         'use strict';
         const MAX_FORMS = 20;
+        const MIN_FORMS = 2;
 
         var $add_button = $('#add-choice');
         var $template = $('#empty-choice-form').html();
@@ -70,7 +71,8 @@
         // the id __prefix__ of the form will be different to num_choice_forms because of being able to delete
         var choice_form_id = 0;
 
-        $add_button.click(function() {
+        // add a choice to the formset
+        function addChoice() {
             if (num_choice_forms >= MAX_FORMS) {
                 alert('Sorry, ' + MAX_FORMS + ' choices maximum.');
             } else {
@@ -81,8 +83,19 @@
                 // increment number of choice forms and tell the formset that its number of forms has increased
                 $('#id_form-TOTAL_FORMS').attr('value', ++num_choice_forms)
             }
+        }
+
+        // on load we want to have the minimum amount of forms already
+        for (var i = 0; i < MIN_FORMS; i++) {
+            addChoice();
+        }
+
+        // add choice button
+        $add_button.click(function() {
+            addChoice();
         });
 
+        // remove choice button (note: should not be able to remove when there are the min amount of forms)
         $(document).on('click', '#remove-choice', function() {
             // find the form that the remove button is inside
             var choice = $(this).closest('.choice-form');
