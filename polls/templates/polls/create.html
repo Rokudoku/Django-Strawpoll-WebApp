@@ -40,7 +40,7 @@
                         {{ c_formset.empty_form.choice_text }}
                     </div>
                     <div class="l-2-col-right">
-                        <i class="fas fa-times fa-lg is-clickable"></i>
+                        <i id="remove-choice" class="fas fa-times fa-lg is-clickable"></i>
                     </div>
                 </div>
             </div>
@@ -81,6 +81,15 @@
                 // increment number of choice forms and tell the formset that its number of forms has increased
                 $('#id_form-TOTAL_FORMS').attr('value', ++num_choice_forms)
             }
+        });
+
+        $(document).on('click', '#remove-choice', function() {
+            // find the form that the remove button is inside
+            var choice = $(this).closest('.choice-form');
+            // remove the button
+            choice.remove();
+            // decrement number of choice forms and tell the formset that it has one less form
+            $('#id_form-TOTAL_FORMS').attr('value', --num_choice_forms);
         });
     })
     </script>
