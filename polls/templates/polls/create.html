@@ -34,7 +34,7 @@
             </div>
             <!-- A template for making an empty choice form. -->
             <script type="text/html" id="empty-choice-form">
-            <div id="choice-form-__prefix__">
+            <div class="choice-form" id="choice-form-__prefix__">
                 <div class="l-2-col">
                     <div class="l-2-col-left">
                         {{ c_formset.empty_form.choice_text }}
@@ -67,21 +67,20 @@
 
         // initialise number of forms to the amount already existing (depending on 'extra' and 'min_num' formset params)
         var num_choice_forms = $('#choice-formset').children().length;
+        // the id __prefix__ of the form will be different to num_choice_forms because of being able to delete
+        var choice_form_id = 0;
 
-        $add_button.click(function(event) {
+        $add_button.click(function() {
             if (num_choice_forms >= MAX_FORMS) {
                 alert('Sorry, ' + MAX_FORMS + ' choices maximum.');
             } else {
-                // make an empty choice form with the correct id using the template
-                var choice_form = $template.replace(/__prefix__/g, num_choice_forms);
+                // make an empty choice form with the correct id using the template and increment id
+                var choice_form = $template.replace(/__prefix__/g, choice_form_id++);
                 // add it into the formset
                 $choice_formset.append(choice_form);
-                // update the number of choice forms
-                num_choice_forms += 1;
-                // tell the formset that the total forms have increased
-                $('#id_form-TOTAL_FORMS').attr('value', num_choice_forms)
+                // increment number of choice forms and tell the formset that its number of forms has increased
+                $('#id_form-TOTAL_FORMS').attr('value', ++num_choice_forms)
             }
-            console.log(num_choice_forms);
         });
     })
     </script>
