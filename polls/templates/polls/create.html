@@ -35,6 +35,9 @@
             <!-- A template for making an empty choice form. -->
             <script type="text/html" id="empty-choice-form">
             <div class="choice-form" id="choice-form-__prefix__">
+                {% for error in c_formset.empty_form.choice_text.errors %}
+                    <span class="is-error">{{ error }}</span>
+                {% endfor %}
                 <div class="l-2-col">
                     <div class="l-2-col-left">
                         {{ c_formset.empty_form.choice_text }}
@@ -89,6 +92,7 @@
         for (var i = 0; i < MIN_FORMS; i++) {
             addChoice();
         }
+        $('#id_form-MIN_NUM_FORMS').attr('value', MIN_FORMS);
 
         // add choice button
         $add_button.click(function() {
@@ -97,12 +101,16 @@
 
         // remove choice button (note: should not be able to remove when there are the min amount of forms)
         $(document).on('click', '#remove-choice', function() {
-            // find the form that the remove button is inside
-            var choice = $(this).closest('.choice-form');
-            // remove the button
-            choice.remove();
-            // decrement number of choice forms and tell the formset that it has one less form
-            $('#id_form-TOTAL_FORMS').attr('value', --num_choice_forms);
+            if (num_choice_forms <= 2) {
+                alert('You must have at least 2 choices!');
+            } else {
+                // find the form that the remove button is inside
+                var choice = $(this).closest('.choice-form');
+                // remove the button
+                choice.remove();
+                // decrement number of choice forms and tell the formset that it has one less form
+                $('#id_form-TOTAL_FORMS').attr('value', --num_choice_forms);
+            }
         });
     })
     </script>
