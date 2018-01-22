@@ -5,7 +5,7 @@ from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.views import generic
 
-from .forms import QuestionForm, ChoiceForm
+from .forms import QuestionForm, ChoiceForm, BaseChoiceFormSet
 from .models import Question, Choice
 
 class IndexView(generic.ListView):
@@ -73,7 +73,7 @@ def create_question(request):
     # empty form if no post data
     q_form = QuestionForm(request.POST or None)
 
-    ChoiceFormset = formset_factory(ChoiceForm, extra=0)
+    ChoiceFormset = formset_factory(ChoiceForm, formset=BaseChoiceFormSet, extra=0)
     c_formset = ChoiceFormset(request.POST or None)
     print(request.POST)
     if q_form.is_valid() and c_formset.is_valid():

@@ -18,26 +18,15 @@
             {{ c_formset.management_form }}
 
             <div class="choice-formset">
-                {% for form in c_formset %}
-                    {% for error in form.choice_text.errors %}
-                        <span class="is-error">{{ error }}</span>
-                    {% endfor %}
-                    <div class="l-2-col">
-                        <div class="l-2-col-left">
-                            {{ form.choice_text }}
-                        </div>
-                        <div class="l-2-col-right">
-                            <i class="fas fa-times fa-lg is-clickable"></i>
-                        </div>
-                    </div>
+                {% for error in c_formset.errors %}
+                    {{ error.choice_text }}
                 {% endfor %}
+                {# generated choice forms go here #}
             </div>
+
             <!-- A template for making an empty choice form. -->
             <script type="text/html" id="empty-choice-form">
             <div class="choice-form" id="choice-form-__prefix__">
-                {% for error in c_formset.empty_form.choice_text.errors %}
-                    <span class="is-error">{{ error }}</span>
-                {% endfor %}
                 <div class="l-2-col">
                     <div class="l-2-col-left">
                         {{ c_formset.empty_form.choice_text }}
@@ -92,7 +81,7 @@
         for (var i = 0; i < MIN_FORMS; i++) {
             addChoice();
         }
-        $('#id_form-MIN_NUM_FORMS').attr('value', MIN_FORMS);
+{#        $('#id_form-MIN_NUM_FORMS').attr('value', MIN_FORMS);#}
 
         // add choice button
         $add_button.click(function() {
