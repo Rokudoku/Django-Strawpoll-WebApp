@@ -16,11 +16,16 @@ class ChoiceForm(forms.Form):
 
 
 class BaseChoiceFormSet(forms.BaseFormSet):
-    def __init__(self, *args, **kwargs):
-        """
-        The empty_forms and 'extra' forms of Django formsets are automatically set to empty_permitted = True.
-        Need to change that here.
-        """
-        super().__init__(*args, **kwargs)
+    def clean(self):
+        """Checks that there are at least 2 forms filled in."""
+        if any(self.errors):
+            # Don't bother validating the formset unless each form is valid on its own
+            return
+        choice_text_all = []
         for form in self.forms:
-            form.empty_permitted = False
+            # any empty strings should show up as None
+            choice_text = form.cleaned_data.get('choice_text')
+            if choice_text is not None:
+                choice_text_all.append(choice_text)
+        if len(choice_text_all) < 2:
+            raise forms.ValidationError("You must have at least 2 choices.")

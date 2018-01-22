@@ -18,9 +18,7 @@
             {{ c_formset.management_form }}
 
             <div class="choice-formset">
-                {% for error in c_formset.errors %}
-                    {{ error.choice_text }}
-                {% endfor %}
+                {{ c_formset.non_form_errors }}
                 {# generated choice forms go here #}
             </div>
 
