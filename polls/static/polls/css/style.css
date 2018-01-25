@@ -50,7 +50,6 @@ body {
 }
 
 form input[type="text"] {
-    margin-bottom: 1em;
     padding: 0.5em;
     width: 100%;
 }
@@ -139,6 +138,10 @@ MODULE
 
 .container {
     margin: 30px 20px;
+}
+
+.choice-form button {
+    background-color: #8a2327;
 }
 
 .question-list {

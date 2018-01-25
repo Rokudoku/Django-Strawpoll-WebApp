@@ -64,7 +64,9 @@
             <p>No polls are available.</p>
         {% endif %}
     </div>
-    <a href="{% url 'polls:create' %}">Create new question</a>
+    <div class="container">
+        <button class="btn" onclick="location.href='{% url 'polls:create' %}'">Create new question</button>
+    </div>
 
 {% endblock content %}
 

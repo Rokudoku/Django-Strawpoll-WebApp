@@ -24,15 +24,15 @@
 
             <!-- A template for making an empty choice form. -->
             <script type="text/html" id="empty-choice-form">
-            <div class="choice-form" id="choice-form-__prefix__">
-                <div class="l-2-col">
+            <div class="l-2-col choice-form" id="choice-form-__prefix__">
+{#                <div class="">#}
                     <div class="l-2-col-left">
                         {{ c_formset.empty_form.choice_text }}
                     </div>
                     <div class="l-2-col-right">
-                        <i id="remove-choice" class="fas fa-times fa-lg is-clickable"></i>
+                        <button><i id="remove-choice" class="fas fa-times"></i></button>
                     </div>
-                </div>
+{#                </div>#}
             </div>
             </script>
 
