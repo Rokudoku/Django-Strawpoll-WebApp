@@ -187,3 +187,68 @@ class QuestionResultsViewTests(TestCase):
         url = reverse('polls:results', args=(past_question.id,))
         response = self.client.get(url)
         self.assertContains(response, past_question.question_text)
+
+
+class QuestionCreateViewTests(TestCase):
+    # Sample post data...
+    # <QueryDict: {'csrfmiddlewaretoken': ['TRM5CNKVnb4pZrAwkhklBTW04bR9u0TGnegpWlS4euta8CNMOomDb06hhNoqoYXE'],
+    # 'question_text': ['Question'], 'form-TOTAL_FORMS': ['2'], 'form-INITIAL_FORMS': ['0'],
+    # 'form-MIN_NUM_FORMS': ['0'], 'form-MAX_NUM_FORMS': ['1000'],
+    # 'form-0-choice_text': ['Choice 1'], 'form-1-choice_text': ['']}>
+    def setUp(self):
+        self.url = reverse('polls:create')
+        # the default post data for an empty form and formset page with 2 choices
+        self.default_post_data = {'question_text': [''], 'form-TOTAL_FORMS': ['2'], 'form-INITIAL_FORMS': ['0'],
+                                  'form-MIN_NUM_FORMS': ['0'], 'form-MAX_NUM_FORMS': ['1000'],
+                                  'form-0-choice_text': [''], 'form-1-choice_text': ['']}
+
+    def test_200_get(self):
+        """
+        Make sure we are getting an OK status code when making a GET request.
+        """
+        response = self.client.get(self.url)
+        self.assertEquals(response.status_code, 200)
+
+    def test_200_post_empty_form(self):
+        """
+        Make sure we are getting an OK status code when making a POST request with an empty form.
+        """
+        response = self.client.post(self.url, self.default_post_data)
+        self.assertEquals(response.status_code, 200)
+
+    def test_no_redirect_empty_form(self):
+        """
+        Should not be redirected when the form is completely empty.
+        """
+        response = self.client.post(self.url, self.default_post_data, follow=True)
+        self.assertQuerysetEqual(response.redirect_chain, [])
+
+    def test_no_redirect_no_question_text_with_choices(self):
+        """
+        Should not be redirected when the question_text field is not filled in. Even if the 2 choices are filled in.
+        """
+        post_data = self.default_post_data
+        post_data['form-0-choice_text'] = 'Choice 1'
+        post_data['form-1-choice_text'] = 'Choice 2'
+        response = self.client.post(self.url, post_data, follow=True)
+        self.assertQuerysetEqual(response.redirect_chain, [])
+
+    def test_no_redirect_one_choice(self):
+        """
+        Should not be redirected when only one choice is filled in (as we want at least 2 choices)
+        """
+        post_data = self.default_post_data
+        post_data['question_text'] = 'Question'
+        post_data['form-0-choice_text'] = 'Choice 1'
+        response = self.client.post(self.url, post_data, follow=True)
+        self.assertQuerysetEqual(response.redirect_chain, [])
+
+    def test_redirect_question_text_2_choices(self):
+        """
+        Should be redirected to index if the question text and 2 choices are filled in.
+        """
+        post_data = self.default_post_data
+        post_data.update({'question_text': ['Question'], 'form-0-choice_text': ['Choice 1'],
+                          'form-1-choice_text': ['Choice 2']})
+        response = self.client.post(self.url, post_data)
+        self.assertRedirects(response, '/polls/')

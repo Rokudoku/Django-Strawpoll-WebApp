@@ -77,7 +77,7 @@ def create_question(request):
 
     ChoiceFormset = formset_factory(ChoiceForm, formset=BaseChoiceFormSet, extra=0)
     c_formset = ChoiceFormset(request.POST or None)
-    print(request.POST)
+    # print(request.POST)
     if q_form.is_valid() and c_formset.is_valid():
         new_question = q_form.save(commit=False)
         new_question.pub_date = timezone.now()
