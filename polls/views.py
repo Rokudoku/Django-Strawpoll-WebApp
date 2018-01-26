@@ -72,17 +72,25 @@ def create_question(request):
     """
     Make a Question by submitting the question title and the text for the Choices in a form.
     """
-    # empty form if no post data
+    # initialise form and formset with post data if possible, otherwise render empty forms
     q_form = QuestionForm(request.POST or None)
-
     ChoiceFormset = formset_factory(ChoiceForm, formset=BaseChoiceFormSet, extra=0)
     c_formset = ChoiceFormset(request.POST or None)
-    # print(request.POST)
+
     if q_form.is_valid() and c_formset.is_valid():
+        # make the new question with the pub_date set to now
         new_question = q_form.save(commit=False)
         new_question.pub_date = timezone.now()
         new_question.save()
+        # make a choice for this question for each filled in choice form
+        for choice in c_formset.cleaned_data:
+            choice_text = choice.get('choice_text')
+            # any unfilled choice has no 'choice_text' key, so ignore these
+            if choice_text is not None:
+                Choice.objects.create(question=new_question, choice_text=choice_text, votes=0)
         return HttpResponseRedirect(reverse('polls:index'))
+
+    # send the form/formset objects to the template
     context = {
         'q_form': q_form,
         'c_formset': c_formset,

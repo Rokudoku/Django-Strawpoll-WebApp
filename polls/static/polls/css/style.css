@@ -146,7 +146,7 @@ MODULE
 .choice-form button {
     background-color: #8a2327;
     padding: 0;
-    width: 9%;
+    width: 10%;
 }
 
 .question-list {
