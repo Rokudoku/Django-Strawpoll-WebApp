@@ -25,13 +25,15 @@
                     <p class="question-text-right">{{ question.pub_date|naturaltime }}</p>
                 </div>
                 <!-- dropdown of question -->
-                <div class="question-dropdown" id="dropdown{{ question.id }}">
+                <div class="question-dropdown is-hidden" id="dropdown{{ question.id }}">
                     <ul>
                     {% for choice in question.choice_set.all %}
                         <li>{{ choice.choice_text }}</li>
                     {% endfor %}
                     </ul>
-                    <a href="{% url 'polls:delete' question.id %}">Delete</a>
+                    <a href="{% url 'polls:delete' question.id %}">
+                        <button class="btn-danger">Delete</button>
+                    </a>
                 </div>
             {% endfor %}
             </div>
@@ -79,6 +81,11 @@
 
         var $dropdown_icon = $('.question-dropdown-icon');
 
+{#        // have all dropdowns start off as hidden#}
+{#        $('.question-dropdown').each(function(){#}
+{#           $(this).hide();#}
+{#        });#}
+
         $dropdown_icon.click(function(event) {
             // find the dropdown associated with this icon
             var dropdown = $('#' + $(this).attr('dropdown-id'));
@@ -90,6 +97,8 @@
                 .toggleClass(icon_closed);
             // slide up/down the dropdown
             dropdown.slideToggle();
+            dropdown.toggleClass('is-hidden is-flexbox');
+            dropdown.attr('display', 'flex');
         });
     })
     </script>

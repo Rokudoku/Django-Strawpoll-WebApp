@@ -131,6 +131,9 @@ MODULE
 .btn {
     background-color: #2f4f52;
 }
+.btn-danger {
+    background-color: #8a2327
+}
 
 .btn-group {
     margin: 10px 0;
@@ -144,7 +147,6 @@ MODULE
     display: flex;
 }
 .choice-form button {
-    background-color: #8a2327;
     padding: 0;
     width: 10%;
 }
@@ -186,10 +188,24 @@ MODULE
     justify-self: flex-end;
 }
 .question-dropdown {
+    /* uses is-hidden and is-flexbox to swap from display: none to flex */
     background-color: #3c6063;
     border-bottom: 1px black solid;
-    display: none;
+    /*display: none;*/
+    /*display: flex;*/
+    justify-content: space-between;
     padding: 0.1em;
+}
+.question-dropdown > ul {
+    display: block;
+    /* Prevent the list items from touching too close to the button. */
+    margin-right: 0.5em;
+    /*Ok... found this interesting hack by accident when trying to PREVENT LOOOOOONG WORDS FROM OVERFLOWING THE FLEXBOX.
+    It seems that overflow:hidden might be making white space when it cuts off the overflowing part which the
+    word-wrap: break-word deals with and wraps it nicely onto the next line.
+    KEEPING NOTE OF THIS HERE SO I CAN FIX IT SOME OTHER WAY IF IT DOES NOT WORK ON OTHER BROWSERS!!! */
+    overflow: hidden;
+    word-wrap: break-word;
 }
 
 .pagination {
@@ -236,6 +252,14 @@ STATE
     opacity: 0.8;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.is-flexbox {
+    display: flex !important;
+}
+
+.is-hidden {
+    display: none;
 }
 
 /*
