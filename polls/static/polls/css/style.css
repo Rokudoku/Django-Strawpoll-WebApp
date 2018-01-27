@@ -188,15 +188,15 @@ MODULE
     justify-self: flex-end;
 }
 .question-dropdown {
-    /* uses is-hidden and is-flexbox to swap from display: none to flex */
     background-color: #3c6063;
     border-bottom: 1px black solid;
-    /*display: none;*/
-    /*display: flex;*/
-    justify-content: space-between;
-    padding: 0.1em;
+    display: none;
 }
-.question-dropdown > ul {
+.question-dropdown-content {
+    display: flex;
+    justify-content: space-between;
+}
+.question-dropdown-content > ul {
     display: block;
     /* Prevent the list items from touching too close to the button. */
     margin-right: 0.5em;
@@ -252,14 +252,6 @@ STATE
     opacity: 0.8;
     padding-left: 10px;
     padding-right: 10px;
-}
-
-.is-flexbox {
-    display: flex !important;
-}
-
-.is-hidden {
-    display: none;
 }
 
 /*
