@@ -73,6 +73,17 @@ input[type="radio"] + label {
     overflow: auto;
 }
 
+/* LONG STRING OVERFLOW FIX */
+h4, ul, label {
+    /*Ok... found this interesting hack by accident when trying to prevent loooong words from overflowing the parent.
+    It seems that overflow:hidden might be making white space when it cuts off the overflowing part which the
+    word-wrap: break-word deals with and wraps it nicely onto the next line.
+    KEEPING NOTE OF THIS HERE SO I CAN FIX IT SOME OTHER WAY IF IT DOES NOT WORK ON OTHER BROWSERS!!! */
+    overflow: hidden;
+    word-wrap: break-word;
+    /* Note: I tried solutions using 'word-break: break-all' but didn't how small words would break up */
+}
+
 /*
 ==========================================================================
 LAYOUT
@@ -200,12 +211,6 @@ MODULE
     display: block;
     /* Prevent the list items from touching too close to the button. */
     margin-right: 0.5em;
-    /*Ok... found this interesting hack by accident when trying to PREVENT LOOOOOONG WORDS FROM OVERFLOWING THE FLEXBOX.
-    It seems that overflow:hidden might be making white space when it cuts off the overflowing part which the
-    word-wrap: break-word deals with and wraps it nicely onto the next line.
-    KEEPING NOTE OF THIS HERE SO I CAN FIX IT SOME OTHER WAY IF IT DOES NOT WORK ON OTHER BROWSERS!!! */
-    overflow: hidden;
-    word-wrap: break-word;
 }
 
 .pagination {
@@ -252,6 +257,18 @@ STATE
     opacity: 0.8;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+/* I think this goes here? Intend on spanning this over required areas. */
+.long-word-fix {
+    /*Ok... found this interesting hack by accident when trying to PREVENT LOOOOOONG WORDS FROM OVERFLOWING THE PARENT.
+    It seems that overflow:hidden might be making white space when it cuts off the overflowing part which the
+    word-wrap: break-word deals with and wraps it nicely onto the next line.
+    KEEPING NOTE OF THIS HERE SO I CAN FIX IT SOME OTHER WAY IF IT DOES NOT WORK ON OTHER BROWSERS!!! */
+    overflow: hidden;
+    word-wrap: break-word;
+
+    /* Note: I tried solutions using 'word-break: break-all' but didn't how small words would break up */
 }
 
 /*
