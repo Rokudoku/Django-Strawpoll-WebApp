@@ -1,0 +1,21 @@
+{% extends "polls/base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        {% if about_section_list %}
+            {% for section in about_section_list %}
+                <h1>{{ section.title }}</h1>
+                <hr>
+                <p>{{ section.content }}</p>
+            {% endfor %}
+        {% else %}
+            <p>Cannot find 'About' information.</p>
+        {% endif %}
+
+    </div>
+
+{% endblock %}

@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.views import generic
 
 from .forms import QuestionForm, ChoiceForm, BaseChoiceFormSet
-from .models import Question, Choice
+from .models import Question, Choice, AboutSection
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -49,6 +49,18 @@ class QuestionDelete(generic.edit.DeleteView):
     model = Question
     success_url = reverse_lazy('polls:index')
     template_name = 'polls/confirm_delete.html'
+
+
+class AboutView(generic.ListView):
+    template_name = 'polls/about.html'
+    context_object_name = 'about_section_list'
+
+    def get_queryset(self):
+        """
+        Get all AboutSections and order them by display order.
+        """
+        return AboutSection.objects.all().order_by('display_order')
+
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
