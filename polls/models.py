@@ -27,6 +27,7 @@ class Question(models.Model):
     was_published_recently.boolean = True
     was_published_recently.short_description = 'Published recently?'
 
+
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=constants.CHOICE_TEXT_LENGTH)
@@ -34,3 +35,13 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+
+class AboutSection(models.Model):
+    title = models.CharField(max_length=50)
+    content = models.TextField(max_length=1000)
+    # field for being able to order the sections in the desired order to be displayed
+    display_order = models.PositiveSmallIntegerField(default=1)
+
+    def __str__(self):
+        return self.title

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Choice, Question
+from .models import Choice, Question, AboutSection
 
 
 class ChoiceInline(admin.TabularInline):
@@ -22,4 +22,10 @@ class QuestionAdmin(admin.ModelAdmin):
     ]
     inlines = [ChoiceInline]
 
+
+class AboutSectionAdmin(admin.ModelAdmin):
+    list_display = ('title', 'display_order', 'content')
+    ordering = ('display_order',)
+
 admin.site.register(Question, QuestionAdmin)
+admin.site.register(AboutSection, AboutSectionAdmin)
