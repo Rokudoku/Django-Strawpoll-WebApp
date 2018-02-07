@@ -21,6 +21,11 @@
         <a class="navbar-link" href="{% url 'polls:index' %}">Polls</a>
         <a class="navbar-link" href="{% url 'polls:about' %}">About</a>
         <a class="navbar-link" href="#">Search</a>
+        {% if user.is_authenticated %}
+            <a class="navbar-link" href="#">{{ user.username }}</a>
+        {% else %}
+            <a class="navbar-link" href="#">Sign in</a>
+        {% endif %}
     </div>
     <div class="main-content">
         {% block content %}{% endblock %}

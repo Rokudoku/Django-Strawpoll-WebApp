@@ -67,9 +67,9 @@
         {% else %}
             <p>No polls are available.</p>
         {% endif %}
-    </div>
-    <div class="container">
-        <button class="btn" onclick="location.href='{% url 'polls:create' %}'">Create new question</button>
+
+        <hr />
+        <button class="btn l-center" onclick="location.href='{% url 'polls:create' %}'">Create new question</button>
     </div>
 
 {% endblock content %}

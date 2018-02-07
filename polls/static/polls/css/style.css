@@ -95,6 +95,11 @@ LAYOUT
     padding: 10px 20px;
 }
 
+/* Centers block objects */
+.l-center {
+    margin: 0 auto;
+}
+
 /* split into 2 columns */
 .l-2-col {
     display: grid;
