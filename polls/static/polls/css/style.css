@@ -100,7 +100,7 @@ LAYOUT
     margin: 0 auto;
 }
 
-/* split into 2 columns */
+/* split into 2 columns (L-2-COLS) */
 .l-2-col {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -122,8 +122,18 @@ LAYOUT
     display: inline-block;
     padding: 10px 40px;
     text-decoration: none;
+    width: auto;
 }
 .navbar-link:hover {
+    background-color: #193a3d;
+}
+.navbar-dropdown {
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 40px;
+    width: auto;
+}
+.navbar-dropdown:hover {
     background-color: #193a3d;
 }
 
@@ -262,6 +272,13 @@ STATE
     opacity: 0.8;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.is-hidden {
+    display: none;
+}
+.is-block {
+    display: block;
 }
 
 /* I think this goes here? Intend on spanning this over required areas. */

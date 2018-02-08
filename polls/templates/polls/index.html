@@ -83,7 +83,7 @@
 
         var $dropdown_icon = $('.question-dropdown-icon');
 
-        $dropdown_icon.click(function(event) {
+        $dropdown_icon.click(function() {
             // find the dropdown associated with this icon
             var dropdown = $('#' + $(this).attr('dropdown-id'));
             // prevent getting sent to question detail page (if the entire question is a link)
@@ -95,6 +95,6 @@
             // slide up/down the dropdown
             dropdown.slideToggle();
         });
-    })
+    });
     </script>
 {% endblock %}

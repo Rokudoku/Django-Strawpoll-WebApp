@@ -17,21 +17,38 @@
     <div class="header">
         <h1 class="header-title">Portfolio</h1>
     </div>
-    <div class="navbar">
-        <a class="navbar-link" href="{% url 'polls:index' %}">Polls</a>
-        <a class="navbar-link" href="{% url 'polls:about' %}">About</a>
-        <a class="navbar-link" href="#">Search</a>
-        {% if user.is_authenticated %}
-            <a class="navbar-link" href="#">{{ user.username }}</a>
-        {% else %}
-            <a class="navbar-link" href="#">Sign in</a>
-        {% endif %}
+    <div class="navbar l-2-col">
+        <div class="l-2-col-left">
+            <a class="navbar-link" href="{% url 'polls:index' %}">Polls</a>
+            <a class="navbar-link" href="{% url 'polls:about' %}">About</a>
+            <a class="navbar-link" href="#">Search</a>
+        </div>
+        <div class="l-2-col-right">
+            {% if user.is_authenticated %}
+                <div class="navbar-dropdown">
+                    {{ user.username }}
+                    <a class="navbar-link is-hidden" href="{% url 'polls:index' %}">Polls</a>
+                    <a class="navbar-link is-hidden" href="{% url 'polls:index' %}">Polls</a>
+                    <a class="navbar-link is-hidden" href="{% url 'polls:index' %}">Polls</a>
+                </div>
+            {% else %}
+                <a class="navbar-link" href="#">Sign in</a>
+            {% endif %}
+        </div>
     </div>
     <div class="main-content">
         {% block content %}{% endblock %}
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(function() {
+        'use strict';
+            $('.navbar-dropdown').click(function() {
+                $(this).children().toggleClass("is-hidden is-block");
+            });
+        });
+    </script>
     {% block scripts %}{% endblock %}
 </body>
 
