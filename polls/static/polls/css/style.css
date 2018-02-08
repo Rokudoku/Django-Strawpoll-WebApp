@@ -127,6 +127,26 @@ LAYOUT
 .navbar-link:hover {
     background-color: #193a3d;
 }
+.navbar-links {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+.navbar-links li {
+    cursor: pointer;
+    /*display: inline-block;*/
+    float: left;
+    list-style: none;
+    padding: 0.8em 2em;
+    text-transform: uppercase;
+}
+.navbar-links li:hover {
+    background-color: #193a3d;
+}
+.navbar-links li a {
+    /*display: block;*/
+    /*padding: 0.8em 2em;*/
+}
 .navbar-dropdown {
     cursor: pointer;
     display: inline-block;

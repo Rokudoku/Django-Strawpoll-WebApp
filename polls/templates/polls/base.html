@@ -18,23 +18,26 @@
         <h1 class="header-title">Portfolio</h1>
     </div>
     <div class="navbar l-2-col">
-        <div class="l-2-col-left">
-            <a class="navbar-link" href="{% url 'polls:index' %}">Polls</a>
-            <a class="navbar-link" href="{% url 'polls:about' %}">About</a>
-            <a class="navbar-link" href="#">Search</a>
-        </div>
-        <div class="l-2-col-right">
+        <ul class="navbar-links l-2-col-left">
+{#            <li onclick="location.href='{% url 'polls:index' %}'">Polls#}
+{#            </li><li onclick="location.href='{% url 'polls:about' %}'">About#}
+{#            </li>#}
+            <a href="{% url 'polls:index' %}"><li>Polls</li></a>
+            <a href="{% url 'polls:about' %}"><li>About</li></a>
+
+        </ul>
+        <ul class="navbar-links l-2-col-right">
             {% if user.is_authenticated %}
-                <div class="navbar-dropdown">
-                    {{ user.username }}
-                    <a class="navbar-link is-hidden" href="{% url 'polls:index' %}">Polls</a>
-                    <a class="navbar-link is-hidden" href="{% url 'polls:index' %}">Polls</a>
-                    <a class="navbar-link is-hidden" href="{% url 'polls:index' %}">Polls</a>
-                </div>
+                <ul class="navbar-links">
+                    <li>{{ user.username }}</li>
+{#                    <li><a class="is-hidden" href="{% url 'polls:index' %}">Polls</a></li>#}
+{#                    <li><a class="is-hidden" href="{% url 'polls:index' %}">Polls</a></li>#}
+{#                    <li><a class="is-hidden" href="{% url 'polls:index' %}">Polls</a></li>#}
+                </ul>
             {% else %}
                 <a class="navbar-link" href="#">Sign in</a>
             {% endif %}
-        </div>
+        </ul>
     </div>
     <div class="main-content">
         {% block content %}{% endblock %}
