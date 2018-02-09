@@ -17,8 +17,8 @@
     <div class="header">
         <h1 class="header-title">Portfolio</h1>
     </div>
-    <div class="navbar l-2-col">
-        <ul class="navbar-links l-2-col-left">
+    <div class="nav l-2-col">
+        <ul class="nav-links l-2-col-left">
 {#            <li onclick="location.href='{% url 'polls:index' %}'">Polls#}
 {#            </li><li onclick="location.href='{% url 'polls:about' %}'">About#}
 {#            </li>#}
@@ -26,16 +26,16 @@
             <a href="{% url 'polls:about' %}"><li>About</li></a>
 
         </ul>
-        <ul class="navbar-links l-2-col-right">
+        <ul class="nav-links l-2-col-right">
             {% if user.is_authenticated %}
-                <ul class="navbar-links">
-                    <li>{{ user.username }}</li>
-{#                    <li><a class="is-hidden" href="{% url 'polls:index' %}">Polls</a></li>#}
-{#                    <li><a class="is-hidden" href="{% url 'polls:index' %}">Polls</a></li>#}
-{#                    <li><a class="is-hidden" href="{% url 'polls:index' %}">Polls</a></li>#}
+                <li class="nav-dropdown">{{ user.username }}</li>
+                <ul class="nav-dropdown-links">
+                    <a href="{% url 'polls:index' %}"><li>My Polls</li></a>
+                    <a href="{% url 'polls:about' %}"><li>Sign Out</li></a>
                 </ul>
+                <li>TEST</li>
             {% else %}
-                <a class="navbar-link" href="#">Sign in</a>
+                <a class="nav-link" href="#">Sign in</a>
             {% endif %}
         </ul>
     </div>
@@ -47,7 +47,7 @@
     <script>
         $(function() {
         'use strict';
-            $('.navbar-dropdown').click(function() {
+            $('.nav-dropdown').click(function() {
                 $(this).children().toggleClass("is-hidden is-block");
             });
         });

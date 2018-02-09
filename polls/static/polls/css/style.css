@@ -113,26 +113,26 @@ LAYOUT
     justify-self: flex-end;
 }
 
-.navbar {
+.nav {
     background-color: #2f4f52;
     border: 1px solid black;
     overflow: auto;
 }
-.navbar-link {
+.nav-link {
     display: inline-block;
     padding: 10px 40px;
     text-decoration: none;
     width: auto;
 }
-.navbar-link:hover {
+.nav-link:hover {
     background-color: #193a3d;
 }
-.navbar-links {
+.nav-links {
     display: block;
     margin: 0;
     padding: 0;
 }
-.navbar-links li {
+.nav-links li {
     cursor: pointer;
     /*display: inline-block;*/
     float: left;
@@ -140,21 +140,21 @@ LAYOUT
     padding: 0.8em 2em;
     text-transform: uppercase;
 }
-.navbar-links li:hover {
+.nav-links li:hover {
     background-color: #193a3d;
 }
-.navbar-links li a {
-    /*display: block;*/
-    /*padding: 0.8em 2em;*/
+.nav-dropdown {
+    display: block;
+    float: none;
 }
-.navbar-dropdown {
-    cursor: pointer;
-    display: inline-block;
-    padding: 10px 40px;
-    width: auto;
+.nav-dropdown-links {
+    display: block;
+    float: none;
+    position: absolute;
 }
-.navbar-dropdown:hover {
-    background-color: #193a3d;
+.nav-dropdown-links li {
+    display: block;
+    float: none;
 }
 
 .main-content {
