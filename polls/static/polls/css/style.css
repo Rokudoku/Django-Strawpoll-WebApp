@@ -122,6 +122,7 @@ LAYOUT
     padding: 0;
 }
 .nav-links li {
+    /* Floating left because inline elements leave strange effects with whitespace in the html. */
     float: left;
     list-style: none;
 }
@@ -135,45 +136,15 @@ LAYOUT
 .nav-links li a:hover {
     background-color: #193a3d;
 }
-/*.nav-link {*/
-    /*display: inline-block;*/
-    /*padding: 10px 40px;*/
-    /*text-decoration: none;*/
-    /*width: auto;*/
-/*}*/
-/*.nav-link:hover {*/
-    /*background-color: #193a3d;*/
-/*}*/
-/*.nav-links {*/
-    /*display: block;*/
-    /*margin: 0;*/
-    /*padding: 0;*/
-/*}*/
-/*.nav-links li {*/
-    /*cursor: pointer;*/
-    /*!*display: inline-block;*!*/
-    /*float: left;*/
-    /*list-style: none;*/
-    /*padding: 0.8em 2em;*/
-    /*position: relative;*/
-    /*text-transform: uppercase;*/
-/*}*/
-/*.nav-links li:hover {*/
-    /*background-color: #193a3d;*/
-/*}*/
-/*.nav-dropdown {*/
-    /*!*display: block;*!*/
-    /*!*float: none;*!*/
-/*}*/
-/*.nav-dropdown-links {*/
-    /*background-color: #2f4f52;*/
-    /*display: block;*/
-    /*position: absolute;*/
-    /*!*float: none;*!*/
-/*}*/
-/*.nav-dropdown-links li {*/
-    /*padding: 0;*/
-/*}*/
+.nav-dropdown ul {
+    background-color: #2f4f52;
+    border: 1px solid black;
+    /*display: none;*/
+    position: absolute;
+}
+.nav-dropdown ul li {
+    display: block;
+}
 
 .main-content {
     background-color: #4c8588;

@@ -21,6 +21,12 @@
         <ul class="nav-links">
             <li><a href="{% url 'polls:index' %}">Polls</a></li>
             <li><a href="{% url 'polls:about' %}">About</a></li>
+            <li class="nav-dropdown"><a href="#">You Are Not Signed In</a>
+                <ul class="nav-links is-hidden">
+                    <li><a href="#">Sign In</a></li>
+                    <li><a href="#">I dunno</a></li>
+                </ul>
+            </li>
         </ul>
 {#        <ul class="nav-links">#}
 {#            {% if user.is_authenticated %}#}
@@ -45,7 +51,7 @@
         $(function() {
         'use strict';
             $('.nav-dropdown').click(function() {
-                $(this).children().toggleClass("is-hidden is-block");
+                $(this).find('.nav-links').toggleClass("is-hidden is-block");
             });
         });
     </script>
