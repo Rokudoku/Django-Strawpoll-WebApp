@@ -136,24 +136,12 @@ LAYOUT
 .nav-links li a:hover {
     background-color: #193a3d;
 }
-.nav-dropdown {
-
-}
-.nav-dropdown-wrapper {
-    /*height: 100%;*/
-    /*position: relative;*/
-}
 .nav-dropdown ul {
     background-color: #2f4f52;
     border: 1px solid black;
-    /*display: none;*/
     position: absolute;
-    /*top: 0;*/
-    /*left: 0;*/
-    /*width: 100%;*/
 }
 .nav-dropdown ul li {
-    /*display: block;*/
     float: none;
 }
 

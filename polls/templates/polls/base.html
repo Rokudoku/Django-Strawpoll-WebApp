@@ -22,28 +22,13 @@
             <li><a href="{% url 'polls:index' %}">Polls</a></li>
             <li><a href="{% url 'polls:about' %}">About</a></li>
             <li class="nav-dropdown"><a href="#">You Are Not Signed In</a>
-{#                <div class="nav-dropdown-wrapper">#}
-                <ul class="nav-links is-hidden">
+                <ul class="nav-links nav-dropdown-links is-hidden">
                     <li><a href="#">Sign In</a></li>
                     <li><a href="#">I dunno</a></li>
                 </ul>
-{#                </div>#}
             </li>
             <li><a href="#">Test</a></li>
         </ul>
-{#        <ul class="nav-links">#}
-{#            {% if user.is_authenticated %}#}
-{#                <li class="nav-dropdown">{{ user.username }}#}
-{#                    <ul class="nav-dropdown-links">#}
-{#                        <a href="{% url 'polls:index' %}"><li>My Polls</li></a>#}
-{#                        <a href="{% url 'polls:about' %}"><li>Sign Out</li></a>#}
-{#                    </ul>#}
-{#                </li>#}
-{#                <li>TEST</li>#}
-{#            {% else %}#}
-{#                <a class="nav-link" href="#">Sign in</a>#}
-{#            {% endif %}#}
-{#        </ul>#}
     </div>
     <div class="main-content">
         {% block content %}{% endblock %}
@@ -53,8 +38,12 @@
     <script>
         $(function() {
         'use strict';
+            /* Show the dropdown on click and adjust the width of the dropdown to be the size of the parent link */
             $('.nav-dropdown').click(function() {
-                $(this).find('.nav-links').toggleClass("is-hidden is-block");
+                var $dropdown = $(this).children('ul').first();
+                var width = $(this).width();
+                $dropdown.toggleClass('is-hidden is-block');
+                $dropdown.css('width', width + 'px');
             });
         });
     </script>
