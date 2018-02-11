@@ -17,27 +17,24 @@
     <div class="header">
         <h1 class="header-title">Portfolio</h1>
     </div>
-    <div class="nav l-2-col">
-        <ul class="nav-links l-2-col-left">
-{#            <li onclick="location.href='{% url 'polls:index' %}'">Polls#}
-{#            </li><li onclick="location.href='{% url 'polls:about' %}'">About#}
-{#            </li>#}
-            <a href="{% url 'polls:index' %}"><li>Polls</li></a>
-            <a href="{% url 'polls:about' %}"><li>About</li></a>
-
+    <div class="nav">
+        <ul class="nav-links">
+            <li><a href="{% url 'polls:index' %}">Polls</a></li>
+            <li><a href="{% url 'polls:about' %}">About</a></li>
         </ul>
-        <ul class="nav-links l-2-col-right">
-            {% if user.is_authenticated %}
-                <li class="nav-dropdown">{{ user.username }}</li>
-                <ul class="nav-dropdown-links">
-                    <a href="{% url 'polls:index' %}"><li>My Polls</li></a>
-                    <a href="{% url 'polls:about' %}"><li>Sign Out</li></a>
-                </ul>
-                <li>TEST</li>
-            {% else %}
-                <a class="nav-link" href="#">Sign in</a>
-            {% endif %}
-        </ul>
+{#        <ul class="nav-links">#}
+{#            {% if user.is_authenticated %}#}
+{#                <li class="nav-dropdown">{{ user.username }}#}
+{#                    <ul class="nav-dropdown-links">#}
+{#                        <a href="{% url 'polls:index' %}"><li>My Polls</li></a>#}
+{#                        <a href="{% url 'polls:about' %}"><li>Sign Out</li></a>#}
+{#                    </ul>#}
+{#                </li>#}
+{#                <li>TEST</li>#}
+{#            {% else %}#}
+{#                <a class="nav-link" href="#">Sign in</a>#}
+{#            {% endif %}#}
+{#        </ul>#}
     </div>
     <div class="main-content">
         {% block content %}{% endblock %}

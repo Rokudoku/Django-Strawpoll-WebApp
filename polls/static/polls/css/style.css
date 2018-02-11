@@ -115,47 +115,65 @@ LAYOUT
 
 .nav {
     background-color: #2f4f52;
-    border: 1px solid black;
-    overflow: auto;
-}
-.nav-link {
-    display: inline-block;
-    padding: 10px 40px;
-    text-decoration: none;
-    width: auto;
-}
-.nav-link:hover {
-    background-color: #193a3d;
+    border-bottom: 1px solid black;
 }
 .nav-links {
-    display: block;
     margin: 0;
     padding: 0;
 }
 .nav-links li {
-    cursor: pointer;
-    /*display: inline-block;*/
     float: left;
     list-style: none;
-    padding: 0.8em 2em;
+}
+.nav-links li a {
+    /* Block allows the padding to extend the height of the nav. Inline does not allow this. */
+    display: block;
+    padding: 1em 2em;
+    text-decoration: none;
     text-transform: uppercase;
 }
-.nav-links li:hover {
+.nav-links li a:hover {
     background-color: #193a3d;
 }
-.nav-dropdown {
-    display: block;
-    float: none;
-}
-.nav-dropdown-links {
-    display: block;
-    float: none;
-    position: absolute;
-}
-.nav-dropdown-links li {
-    display: block;
-    float: none;
-}
+/*.nav-link {*/
+    /*display: inline-block;*/
+    /*padding: 10px 40px;*/
+    /*text-decoration: none;*/
+    /*width: auto;*/
+/*}*/
+/*.nav-link:hover {*/
+    /*background-color: #193a3d;*/
+/*}*/
+/*.nav-links {*/
+    /*display: block;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+/*}*/
+/*.nav-links li {*/
+    /*cursor: pointer;*/
+    /*!*display: inline-block;*!*/
+    /*float: left;*/
+    /*list-style: none;*/
+    /*padding: 0.8em 2em;*/
+    /*position: relative;*/
+    /*text-transform: uppercase;*/
+/*}*/
+/*.nav-links li:hover {*/
+    /*background-color: #193a3d;*/
+/*}*/
+/*.nav-dropdown {*/
+    /*!*display: block;*!*/
+    /*!*float: none;*!*/
+/*}*/
+/*.nav-dropdown-links {*/
+    /*background-color: #2f4f52;*/
+    /*display: block;*/
+    /*position: absolute;*/
+    /*!*float: none;*!*/
+/*}*/
+/*.nav-dropdown-links li {*/
+    /*padding: 0;*/
+/*}*/
 
 .main-content {
     background-color: #4c8588;
