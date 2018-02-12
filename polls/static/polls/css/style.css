@@ -123,6 +123,8 @@ LAYOUT
 }
 .nav-links li {
     /* Floating left because inline elements leave strange effects with whitespace in the html. */
+    border-left: 1px dotted black;
+    border-right: 1px dotted black;
     float: left;
     list-style: none;
 }
@@ -136,12 +138,17 @@ LAYOUT
 .nav-links li a:hover {
     background-color: #193a3d;
 }
-.nav-dropdown ul {
+.nav-dropdown-links {
     background-color: #2f4f52;
     border: 1px solid black;
+    border-bottom: 0;
+    margin: 0;
+    padding: 0;
     position: absolute;
 }
-.nav-dropdown ul li {
+.nav-dropdown-links li {
+    border: 0;
+    border-bottom: 1px dotted black;
     float: none;
 }
 
