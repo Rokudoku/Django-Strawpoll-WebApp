@@ -36,7 +36,9 @@ ALLOWED_HOSTS = ["127.0.0.1", "testserver"]
 # Application definition
 
 INSTALLED_APPS = [
-    # django app
+    # my apps
+    'polls.apps.PollsConfig',
+    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,8 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     # third party apps
-    # my apps
-    'polls.apps.PollsConfig',
 ]
 
 MIDDLEWARE = [
