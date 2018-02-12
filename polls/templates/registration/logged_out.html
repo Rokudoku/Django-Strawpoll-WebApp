@@ -2,6 +2,13 @@
 
 {% block content %}
 
-    <p>You have been successfully logged out.</p>
+    <div class="container">
+        <h1>Logged out</h1>
+        <hr />
+        <p>You have been successfully logged out.</p>
+        <hr />
+
+        <button class="btn" onclick="location.href='{% url 'polls:login'%}'">Log in again</button>
+    </div>
 
 {% endblock %}
