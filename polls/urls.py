@@ -12,6 +12,7 @@ urlpatterns = [
     path('create/', views.create_question, name='create'),
     path('<int:pk>/delete/', views.QuestionDelete.as_view(), name='delete'),
     path('about/', views.AboutView.as_view(), name='about'),
+    path('my_polls/', views.my_polls, name='my_polls'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]

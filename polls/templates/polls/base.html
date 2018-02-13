@@ -26,7 +26,7 @@
             {% if user.is_authenticated %}
                 <li class="nav-dropdown"><a href="#">Signed in as {{ user.username }}</a>
                     <ul class="nav-dropdown-links is-hidden">
-                        <li><a href="#">My Polls</a></li>
+                        <li><a href="{% url 'polls:my_polls' %}">My Polls</a></li>
                         <li><a href="{% url 'polls:logout' %}">Logout</a></li>
                     </ul>
                 </li>

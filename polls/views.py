@@ -80,6 +80,7 @@ def vote(request, question_id):
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
+
 def create_question(request):
     """
     Make a Question by submitting the question title and the text for the Choices in a form.
@@ -108,3 +109,14 @@ def create_question(request):
         'c_formset': c_formset,
     }
     return render(request, 'polls/create.html', context)
+
+
+def my_polls(request):
+    """
+    Show all the polls that the user created.
+    If the user is not signed in, redirect to the login screen.
+    """
+    if request.user.is_authenticated:
+        return render(request, 'polls/my_polls.html')
+    else:
+        return HttpResponseRedirect(reverse('polls:login')+'?next=/polls/my_polls/')
