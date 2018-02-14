@@ -43,10 +43,20 @@
     <script>
         $(function() {
         'use strict';
+
+            /* Clicking outside of the dropdown hides the dropdown. */
+            $(document).click(function() {
+               $('.nav-dropdown-links').addClass('is-hidden');
+               $('.nav-dropdown-links').removeClass('is-block');
+            });
+
             /* Show the dropdown on click and adjust the width of the dropdown to be the size of the parent link */
-            $('.nav-dropdown').click(function() {
+            $('.nav-dropdown').click(function(e) {
+                e.stopPropagation();    // prevent clicking on or within the dropdown from closing the dropdown
+
                 var $dropdown = $(this).children('ul').first();
                 var width = $(this).width();
+
                 $dropdown.toggleClass('is-hidden is-block');
                 $dropdown.css('width', width + 'px');
             });
