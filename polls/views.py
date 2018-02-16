@@ -93,6 +93,7 @@ def create_question(request):
     if q_form.is_valid() and c_formset.is_valid():
         # make the new question with the pub_date set to now
         new_question = q_form.save(commit=False)
+        new_question.author = request.user
         new_question.pub_date = timezone.now()
         new_question.save()
         # make a choice for this question for each filled in choice form

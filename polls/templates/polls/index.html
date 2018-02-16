@@ -21,8 +21,12 @@
                     <span class="question-dropdown-icon" title="Preview" dropdown-id="dropdown{{ question.id }}">
                         <i class="far fa-caret-square-down fa-lg is-clickable"></i>
                     </span>
-                    <p class="question-text-left">{{ question.total_votes }} vote{{ question.total_votes|pluralize }}</p>
-                    <p class="question-text-right">{{ question.pub_date|naturaltime }}</p>
+                    <p class="question-text-left">
+                        {{ question.total_votes }} vote{{ question.total_votes|pluralize }}
+                    </p>
+                    <p class="question-text-right">
+                        Created {{ question.pub_date|naturaltime }} by {{ question.author }}
+                    </p>
                 </div>
                 <!-- dropdown of question -->
                 <div class="question-dropdown" id="dropdown{{ question.id }}">
