@@ -3,8 +3,16 @@
 {% block content %}
 
     <div class="container">
+        <h1>My Polls</h1>
+        <hr />
 
-        <h1>MY POLLS!</h1>
+        {% if questions %}
+            {% for question in questions %}
+                <p>{{ question.question_text }}</p>
+            {% endfor %}
+        {% else %}
+            <p>You have no polls!</p>
+        {% endif %}
 
     </div>
 
