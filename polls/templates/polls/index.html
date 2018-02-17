@@ -1,5 +1,6 @@
 {% extends "polls/base.html" %}
 
+{% load static %}
 {% load humanize %} {# using this for <time> ago format #}
 
 {% block title %}Polls{% endblock %}
@@ -13,7 +14,6 @@
             <div class="question-list">
             {% for question in latest_question_list %}
                 <!-- main part of question -->
-{#                <div class="question" onclick="location.href='{% url 'polls:detail' question.id %}'">#}
                 <div class="question">
                     <h4 class="question-title">
                         <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
@@ -79,26 +79,5 @@
 {% endblock content %}
 
 {% block scripts %}
-    <script>
-    $(function() {
-        'use strict';
-        var icon_closed = 'fa-caret-square-down';
-        var icon_open = 'fa-caret-square-up';
-
-        var $dropdown_icon = $('.question-dropdown-icon');
-
-        $dropdown_icon.click(function() {
-            // find the dropdown associated with this icon
-            var dropdown = $('#' + $(this).attr('dropdown-id'));
-            // prevent getting sent to question detail page (if the entire question is a link)
-{#            event.stopPropagation();#}
-            // toggle the icon
-            $(this).find('[data-fa-processed]')
-                .toggleClass(icon_open)
-                .toggleClass(icon_closed);
-            // slide up/down the dropdown
-            dropdown.slideToggle();
-        });
-    });
-    </script>
+    <script src={% static 'polls/js/question_dropdown.js' %}></script>
 {% endblock %}
