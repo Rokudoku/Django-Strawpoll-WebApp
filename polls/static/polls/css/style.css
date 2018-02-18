@@ -24,6 +24,9 @@ BASE
 
 /* Honestly not sure if this is a good idea but I am going for an opt-out approach for white text instead of an opt-in
    approach (because I am much more likely to want white text than black). */
+/* NOW I AM ALMOST SURE THIS IS A BAD THING. Cannot overwrite the color set here for children elements (e.g. fa icons
+   in a span and li in a ul. Should probably be in body. If I don't end up fixing this, I will make sure not to do this
+   again. */
 * {
     color: whitesmoke;
 }
@@ -234,13 +237,7 @@ MODULE
     display: none;
 }
 .question-dropdown-content {
-    display: flex;
-    justify-content: space-between;
-}
-.question-dropdown-content > ul {
-    display: block;
-    /* Prevent the list items from touching too close to the button. */
-    margin-right: 0.5em;
+    padding: 0.5em;
 }
 
 .pagination {

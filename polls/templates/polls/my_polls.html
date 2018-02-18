@@ -29,15 +29,19 @@
                 </div>
                 <!-- dropdown of question -->
                 <div class="question-dropdown" id="dropdown{{ question.id }}">
-                    <div class="question-dropdown-content">
-                        <ul>
-                        {% for choice in question.choice_set.all %}
-                            <li>{{ choice.choice_text }}</li>
-                        {% endfor %}
-                        </ul>
-                        <a href="{% url 'polls:delete' question.id %}">
-                            <button class="btn-danger">Delete</button>
-                        </a>
+                    <div class="question-dropdown-content l-2-col">
+                        <div class="l-2-col-left">
+                            <ul>
+                            {% for choice in question.choice_set.all %}
+                                <li>{{ choice.choice_text }}</li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="l-2-col-right">
+                            <button class="btn-danger" onclick="location.href='{% url 'polls:delete' question.id %}'">
+                                Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
             {% endfor %}
@@ -45,6 +49,9 @@
         {% else %}
             <p>You have no polls!</p>
         {% endif %}
+
+        <hr />
+        <button class="btn l-center" onclick="location.href='{% url 'polls:create' %}'">Create new question</button>
 
     </div>
 
