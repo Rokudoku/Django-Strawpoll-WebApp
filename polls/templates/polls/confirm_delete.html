@@ -8,9 +8,24 @@
 
         <form action="" method="post">{% csrf_token %}
             <h4>Are you sure you want to delete "{{ object }}"?</h4>
-            <button class="btn" type="submit" value="Confirm">Yes</button>
+            <div class="btn-group-horizontal">
+                <button class="btn" type="submit" value="Confirm">Delete</button>
+                <button class="btn" id="no-btn" type="button" value="No">Back</button>
+            </div>
         </form>
 
     </div>
 
+{% endblock %}
+
+{% block scripts %}
+    <script>
+    $(function() {
+        'use strict';
+        /* Go back to my_polls */
+        $('#no-btn').click(function() {
+           window.history.back();
+        });
+    });
+    </script>
 {% endblock %}

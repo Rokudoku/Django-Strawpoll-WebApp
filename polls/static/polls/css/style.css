@@ -183,6 +183,13 @@ MODULE
     margin: 10px 0;
 }
 
+.btn-group-horizontal {
+    /*display: inline-block;*/
+}
+.btn-group-horizontal button {
+    display: inline;
+}
+
 .container {
     margin: 30px 20px;
 }
@@ -262,7 +269,7 @@ MODULE
 }
 
 .result {
-    background-color: cornflowerblue;
+    background-color: #2f4f52;
     padding-right: 0.5em;
     text-align: end;
 }
