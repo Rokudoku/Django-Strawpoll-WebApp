@@ -1,5 +1,6 @@
 import datetime
 
+from django.contrib.auth.models import AnonymousUser, User
 from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
@@ -190,7 +191,7 @@ class QuestionResultsViewTests(TestCase):
 
 
 class QuestionCreateViewTests(TestCase):
-    # Sample post data...
+    # === Sample post data ===
     # <QueryDict: {'csrfmiddlewaretoken': ['TRM5CNKVnb4pZrAwkhklBTW04bR9u0TGnegpWlS4euta8CNMOomDb06hhNoqoYXE'],
     # 'question_text': ['Question'], 'form-TOTAL_FORMS': ['2'], 'form-INITIAL_FORMS': ['0'],
     # 'form-MIN_NUM_FORMS': ['0'], 'form-MAX_NUM_FORMS': ['1000'],
@@ -201,6 +202,9 @@ class QuestionCreateViewTests(TestCase):
         self.default_post_data = {'question_text': [''], 'form-TOTAL_FORMS': ['2'], 'form-INITIAL_FORMS': ['0'],
                                   'form-MIN_NUM_FORMS': ['0'], 'form-MAX_NUM_FORMS': ['1000'],
                                   'form-0-choice_text': [''], 'form-1-choice_text': ['']}
+        # create a user and login as them
+        self.user = User.objects.create_user(username='testuser', password='testpass')
+        self.client.force_login(self.user)
 
     def test_200_get(self):
         """
@@ -252,3 +256,19 @@ class QuestionCreateViewTests(TestCase):
                           'form-1-choice_text': ['Choice 2']})
         response = self.client.post(self.url, post_data)
         self.assertRedirects(response, '/polls/')
+
+    def test_cannot_access_when_not_authorized(self):
+        """
+        Redirect (shown by 302 status_code) when not logged in.
+        """
+        self.client.logout()
+        response = self.client.get(self.url)
+        self.assertEquals(response.status_code, 302)
+
+    def test_sent_to_login_when_not_authorized(self):
+        """
+        Should be redirected to login screen with create set to next if not logged in.
+        """
+        self.client.logout()
+        response = self.client.get(self.url,)
+        self.assertRedirects(response, '/polls/login/?next=/polls/create/')
