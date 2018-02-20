@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.forms import formset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
@@ -81,6 +82,7 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 
+@login_required(login_url='/polls/login/')
 def create_question(request):
     """
     Make a Question by submitting the question title and the text for the Choices in a form.
