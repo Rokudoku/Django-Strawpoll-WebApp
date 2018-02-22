@@ -115,17 +115,18 @@ def create_question(request):
     return render(request, 'polls/create.html', context)
 
 
-# def delete_question(request, question_id):
-#     """
-#     Deletes the given question if user owns question or if superuser.
-#     If the user is not the owner of the question or a superuser, then raise a 403 error.
-#     """
-#     question = get_object_or_404(Question, pk=question_id)
-#     if question:
-#         question.delete()
-#         success_url = reverse_lazy('polls:index')
-#         return HttpResponseRedirect(success_url)
-
+def delete_question(request, question_id):
+    """
+    Deletes the given question if user owns question or if superuser.
+    If the user is not the owner of the question or a superuser, then raise a 403 error.
+    """
+    question = get_object_or_404(Question, pk=question_id)
+    if request.user == question.author:
+        question.delete()
+        success_url = reverse_lazy('polls:index')
+        return HttpResponseRedirect(success_url)
+    else:
+        raise PermissionDenied
 
 
 def my_polls(request):
