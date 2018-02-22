@@ -15,5 +15,5 @@ urlpatterns = [
     path('my_polls/', views.my_polls, name='my_polls'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('<int:question_id>/delete2/', views.delete_question, name='delete2'),
+    path('<int:question_id>/delete_confirmed/', views.delete_question, name='delete_confirmed'),
 ]

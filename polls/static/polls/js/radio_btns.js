@@ -1,7 +1,5 @@
 // Custom radio buttons using font awesome icons.
 
-'use strict';
-
 $(function() {
 
     var checked = 'fa-check-circle';

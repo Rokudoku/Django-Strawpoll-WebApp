@@ -70,11 +70,18 @@
         {% endif %}
 
         <hr />
-        <button class="btn l-center" onclick="location.href='{% url 'polls:create' %}'">Create new question</button>
+        <button class="btn l-center" id="create-btn">Create new question</button>
     </div>
 
 {% endblock content %}
 
 {% block scripts %}
     <script src={% static 'polls/js/question_dropdown.js' %}></script>
+    <script>
+    $(function() {
+        $('#create-btn').click(function() {
+           location.href = "{% url 'polls:create' %}";
+        });
+    });
+    </script>
 {% endblock %}

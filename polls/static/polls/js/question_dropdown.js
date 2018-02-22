@@ -1,5 +1,4 @@
 $(function() {
-    'use strict';
     var icon_closed = 'fa-caret-square-down';
     var icon_open = 'fa-caret-square-up';
 

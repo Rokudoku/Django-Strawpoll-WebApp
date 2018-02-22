@@ -38,7 +38,7 @@
                             </ul>
                         </div>
                         <div class="l-2-col-right">
-                            <button class="btn-danger" onclick="location.href='{% url 'polls:delete' question.id %}'">
+                            <button class="btn-danger" id="delete-btn">
                                 Delete
                             </button>
                         </div>
@@ -51,7 +51,7 @@
         {% endif %}
 
         <hr />
-        <button class="btn l-center" onclick="location.href='{% url 'polls:create' %}'">Create new question</button>
+        <button class="btn l-center" id="create-btn" link="{% url 'polls:delete' question.id %}">Create new question</button>
 
     </div>
 
@@ -59,4 +59,14 @@
 
 {% block scripts %}
     <script src={% static 'polls/js/question_dropdown.js' %}></script>
+    <script>
+    $(function() {
+        ('#delete-btn').click(function() {
+            location.href = $(this).attr('link');
+        });
+        ('#create-btn').click(function() {
+            location.href = "{% url 'polls:create' %}";
+        });
+    });
+    </script>
 {% endblock %}
