@@ -38,7 +38,7 @@
                             </ul>
                         </div>
                         <div class="l-2-col-right">
-                            <button class="btn-danger" id="delete-btn">
+                            <button class="btn-danger" id="delete-btn-{{ question.id }}" link="{% url 'polls:delete' question.id %}">
                                 Delete
                             </button>
                         </div>
@@ -51,7 +51,7 @@
         {% endif %}
 
         <hr />
-        <button class="btn l-center" id="create-btn" link="{% url 'polls:delete' question.id %}">Create new question</button>
+        <button class="btn l-center" id="create-btn">Create new question</button>
 
     </div>
 
@@ -61,10 +61,11 @@
     <script src={% static 'polls/js/question_dropdown.js' %}></script>
     <script>
     $(function() {
-        ('#delete-btn').click(function() {
+        // id starts with "delete-btn-"
+        $('[id^="delete-btn-"]').click(function() {
             location.href = $(this).attr('link');
         });
-        ('#create-btn').click(function() {
+        $('#create-btn').click(function() {
             location.href = "{% url 'polls:create' %}";
         });
     });
