@@ -38,7 +38,9 @@
                             </ul>
                         </div>
                         <div class="l-2-col-right">
-                            <button class="btn-danger" id="delete-btn-{{ question.id }}" link="{% url 'polls:delete' question.id %}">
+                            <button class="btn-danger" id="delete-btn-{{ question.id }}"
+                                    link="{% url 'polls:delete' question.id %}"
+                                    question_text="{{ question.question_text }}">
                                 Delete
                             </button>
                         </div>
@@ -59,7 +61,13 @@
 
 {% block modal %}
     <div class="modal" id="modal">
-        TEST
+        <div class="modal-content">
+            <p>Are you sure you want to delete "<span></span>"?</p>
+            <div class="btn-group-horizontal">
+                <button class="btn">Yes</button>
+                <button class="btn">No</button>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
@@ -67,13 +75,18 @@
     <script src={% static 'polls/js/question_dropdown.js' %}></script>
     <script>
     $(function() {
+        var $question_text_area = $('.modal-content > p > span');
         // id starts with "delete-btn-"
         $('[id^="delete-btn-"]').click(function() {
-            location.href = $(this).attr('link');
+            // change the modal to refer to the selected question
+            var question_text = $(this).attr('question_text');
+            $question_text_area.text(question_text);
         });
         $('#create-btn').click(function() {
             location.href = "{% url 'polls:create' %}";
         });
+
+        // the delete button
     });
     </script>
 {% endblock %}

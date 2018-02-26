@@ -269,6 +269,7 @@ MODULE
     transform: translate(-50%, -50%);
 
     background-color: black;
+    padding: 1em;
     width: 100%;
 }
 
