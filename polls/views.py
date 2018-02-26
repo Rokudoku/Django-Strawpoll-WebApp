@@ -135,7 +135,7 @@ def my_polls(request):
     If the user is not signed in, redirect to the login screen.
     """
     if request.user.is_authenticated:
-        questions = Question.objects.filter(author=request.user)
+        questions = Question.objects.filter(author=request.user).order_by('-pub_date')
         context = {'questions': questions}
         return render(request, 'polls/my_polls.html', context)
     else:
