@@ -172,17 +172,18 @@ MODULE
 ==========================================================================
 */
 
+/*
+ * === Buttons ===
+ */
 .btn {
     background-color: #2f4f52;
 }
 .btn-danger {
     background-color: #8a2327
 }
-
 .btn-group {
     margin: 10px 0;
 }
-
 .btn-group-horizontal {
     /*display: inline-block;*/
 }
@@ -190,10 +191,16 @@ MODULE
     display: inline;
 }
 
+/*
+ * === Container ===
+ */
 .container {
     margin: 30px 20px;
 }
 
+/*
+ * === Choices Form ===
+ */
 .choice-form {
     display: flex;
 }
@@ -202,6 +209,9 @@ MODULE
     width: 10%;
 }
 
+/*
+ * === Questions (as shown in list) ===
+ */
 .question-list {
     border: 1px solid black;
     border-bottom: 0;
@@ -247,6 +257,24 @@ MODULE
     padding: 0.5em;
 }
 
+/*
+ * === Modal ===
+ */
+.modal {
+    /* Position in the middle of the screen by making it start in the center then nudge it back vertically and
+    horizontally by 50% of width and height. (note: translating method may result in slightly blurry text) */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: black;
+    width: 100%;
+}
+
+/*
+ * === Pagination ===
+ */
 .pagination {
     display: grid;
     grid-column-gap: 1em;
@@ -268,6 +296,9 @@ MODULE
     text-align: right;
 }
 
+/*
+ * === Results ===
+ */
 .result {
     background-color: #2f4f52;
     padding-right: 0.5em;
