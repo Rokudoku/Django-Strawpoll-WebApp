@@ -60,7 +60,8 @@
 {% endblock %}
 
 {% block modal %}
-    <div class="modal is-hidden" id="modal">
+    <div class="modal-background is-hidden"></div>
+    <div class="modal is-hidden">
         <div class="modal-content">
             <p>Are you sure you want to delete "<span></span>"?</p>
             <div class="btn-group-horizontal">
@@ -69,6 +70,7 @@
             </div>
         </div>
     </div>
+
 {% endblock %}
 
 {% block scripts %}
@@ -80,6 +82,7 @@
         var $question_delete_link = "";
         var $question_text_area = $('.modal-content > p > span');
         var $modal = $('.modal');
+        var $modal_background = $('.modal-background');
 
         /* Pressing the delete button will make the modal refer to the question with both the text of the question and
            the link for deletion. It will also un-hide the modal.  */
@@ -91,6 +94,7 @@
             $question_delete_link = $(this).attr('question_delete_link');
             // un-hide the modal
             $modal.removeClass('is-hidden');
+            $modal_background.removeClass('is-hidden');
         });
 
         /* The create new question sends us to the create_question view. */
@@ -101,12 +105,19 @@
         /* Pressing the no button in the modal closes the modal. */
         $('#no-delete-btn').click(function() {
             $modal.addClass('is-hidden');
+            $modal_background.addClass('is-hidden');
         });
 
         /* Pressing the yes button in the modal redirects us to the currently saved deletion link (which should be for
            the question the modal is referring to) */
         $('#yes-delete-btn').click(function() {
             location.href = $question_delete_link;
+        });
+
+        /* Clicking on the modal background (outside the modal) should close the modal. */
+        $modal_background.click(function() {
+            $modal.addClass('is-hidden');
+            $modal_background.addClass('is-hidden');
         });
     });
     </script>

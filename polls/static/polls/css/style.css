@@ -268,11 +268,24 @@ MODULE
     left: 50%;
     transform: translate(-50%, -50%);
 
-    /*background-color: #193a3d;*/
-    background-color: black;
+    /* Responsive width */
     max-width: 1000px;
-    padding: 1em;
     width: 100%;
+
+    background-color: black;
+    padding: 1em;
+
+}
+.modal-background {
+    /* Make the background cover the entire screen */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    background-color: black;
+    opacity: 0.5;
 }
 
 /*
