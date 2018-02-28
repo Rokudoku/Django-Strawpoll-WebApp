@@ -39,7 +39,7 @@
                         </div>
                         <div class="l-2-col-right">
                             <button class="btn-danger" id="delete-btn-{{ question.id }}"
-                                    link="{% url 'polls:delete' question.id %}"
+                                    question_delete_link="{% url 'polls:delete' question.id %}"
                                     question_text="{{ question.question_text }}">
                                 Delete
                             </button>
@@ -60,12 +60,12 @@
 {% endblock %}
 
 {% block modal %}
-    <div class="modal" id="modal">
+    <div class="modal is-hidden" id="modal">
         <div class="modal-content">
             <p>Are you sure you want to delete "<span></span>"?</p>
             <div class="btn-group-horizontal">
-                <button class="btn">Yes</button>
-                <button class="btn">No</button>
+                <button class="btn" id="yes-delete-btn">Yes</button>
+                <button class="btn" id="no-delete-btn">No</button>
             </div>
         </div>
     </div>
@@ -75,18 +75,39 @@
     <script src={% static 'polls/js/question_dropdown.js' %}></script>
     <script>
     $(function() {
+        // need to save the delete link for the question that had its modal opened so that the 'yes' button can send us
+        // to the correct link
+        var $question_delete_link = "";
         var $question_text_area = $('.modal-content > p > span');
-        // id starts with "delete-btn-"
+        var $modal = $('.modal');
+
+        /* Pressing the delete button will make the modal refer to the question with both the text of the question and
+           the link for deletion. It will also un-hide the modal.  */
         $('[id^="delete-btn-"]').click(function() {
             // change the modal to refer to the selected question
             var question_text = $(this).attr('question_text');
             $question_text_area.text(question_text);
+            // save the delete link of the current question
+            $question_delete_link = $(this).attr('question_delete_link');
+            // un-hide the modal
+            $modal.removeClass('is-hidden');
         });
+
+        /* The create new question sends us to the create_question view. */
         $('#create-btn').click(function() {
             location.href = "{% url 'polls:create' %}";
         });
 
-        // the delete button
+        /* Pressing the no button in the modal closes the modal. */
+        $('#no-delete-btn').click(function() {
+            $modal.addClass('is-hidden');
+        });
+
+        /* Pressing the yes button in the modal redirects us to the currently saved deletion link (which should be for
+           the question the modal is referring to) */
+        $('#yes-delete-btn').click(function() {
+            location.href = $question_delete_link;
+        });
     });
     </script>
 {% endblock %}

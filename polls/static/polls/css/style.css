@@ -268,7 +268,9 @@ MODULE
     left: 50%;
     transform: translate(-50%, -50%);
 
+    /*background-color: #193a3d;*/
     background-color: black;
+    max-width: 1000px;
     padding: 1em;
     width: 100%;
 }
