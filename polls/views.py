@@ -47,12 +47,6 @@ class ResultsView(generic.DetailView):
         return Question.objects.filter(pub_date__lte=timezone.now())
 
 
-class QuestionDelete(generic.edit.DeleteView):
-    model = Question
-    success_url = reverse_lazy('polls:index')
-    template_name = 'polls/confirm_delete.html'
-
-
 class AboutView(generic.ListView):
     template_name = 'polls/about.html'
     context_object_name = 'about_section_list'
@@ -123,7 +117,7 @@ def delete_question(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     if request.user == question.author:
         question.delete()
-        success_url = reverse_lazy('polls:index')
+        success_url = reverse_lazy('polls:my_polls')
         return HttpResponseRedirect(success_url)
     else:
         raise PermissionDenied
