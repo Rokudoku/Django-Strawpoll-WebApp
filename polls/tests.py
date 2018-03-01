@@ -1,6 +1,5 @@
 import datetime
 
-from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import AnonymousUser, User
 from django.test import TestCase, RequestFactory
 from django.urls import reverse
@@ -20,6 +19,12 @@ def create_test_question(question_text, days):
     """
     time = timezone.now() + datetime.timedelta(days=days)
     return Question.objects.create(question_text=question_text, pub_date=time)
+
+def create_test_question_owned(question_text, author):
+    """
+    Create a question created now by the given author with the given question text.
+    """
+    return Question.objects.create(question_text=question_text, pub_date=timezone.now(), author=author)
 
 def create_test_choice(question, choice_text, votes):
     """
@@ -302,3 +307,67 @@ class QuestionCreateViewTests(TestCase):
         request.user = AnonymousUser()
         response = create_question(request)
         self.assertEqual(response.status_code, 302)
+
+
+class QuestionDeleteViewTests(TestCase):
+    """
+    Testing the delete view itself. i.e. AFTER the user presses the "yes" button when asked to delete the Question or
+    when going to the url directly.
+    [Note: I tested myself using isinstance(x, int) that the id of a question is an integer.]
+    """
+    def setUp(self):
+        # create a user and login as them
+        self.user = User.objects.create_user(username='testuser', password='testpass')
+        self.client.force_login(self.user)
+        # create a second user to create other questions
+        self.user2 = User.objects.create_user(username='otheruser', password='otherpass')
+
+    def test_404_if_question_not_exist(self):
+        """
+        Trying to delete a question that does not exist should result in a 404 error.
+        """
+        url = reverse('polls:delete', kwargs={'question_id': 100})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+
+    def test_302_if_question_owned(self):
+        """
+        A status code of 302 should be returned if the question is owned by the user. This is because on success, the
+        user is redirected to 'my_polls' view.
+        """
+        question = create_test_question_owned('question', self.user)
+        url = reverse('polls:delete', kwargs={'question_id': question.id})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 302)
+
+    def test_question_deleted_if_question_owned(self):
+        """
+        Ensure the question is actually deleted if the user that owned the question went to its delete view.
+        """
+        question = create_test_question_owned('question', self.user)
+        question_id = question.id
+        url = reverse('polls:delete', kwargs={'question_id': question_id})
+        self.client.get(url)
+        self.assertRaises(Question.DoesNotExist, Question.objects.get, id=question_id)
+
+    def test_403_and_question_not_deleted_if_question_not_owned(self):
+        """
+        Should be status code of 403:Forbidden if the user is not the author of the question.
+        Also make sure teh question is not deleted.
+        """
+        question = create_test_question_owned('question', self.user2)
+        url = reverse('polls:delete', kwargs={'question_id': question.id})
+        response = self.client.get(url)
+        Question.objects.get(id=question.id)  # this would give a Question.DoesNotExist exception if it did not exist
+        self.assertEquals(response.status_code, 403)
+
+    def test_403_and_question_not_deleted_anonymous_user(self):
+        """
+        Make sure Anonymous Users can't randomly delete things. (I dunno maybe something goes horribly wrong)
+        """
+        question = create_test_question_owned('question', self.user)
+        self.client.logout()
+        url = reverse('polls:delete', kwargs={'question_id': question.id})
+        response = self.client.get(url)
+        Question.objects.get(id=question.id)  # this would give a Question.DoesNotExist exception if it did not exist
+        self.assertEquals(response.status_code, 403)
