@@ -1,9 +1,12 @@
 import datetime
 
 from django.contrib.auth.models import AnonymousUser, User
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test import TestCase, RequestFactory
 from django.urls import reverse
 from django.utils import timezone
+
+from selenium.webdriver.firefox.webdriver import WebDriver
 
 from .models import Question, Choice
 from .views import create_question
@@ -371,3 +374,22 @@ class QuestionDeleteViewTests(TestCase):
         response = self.client.get(url)
         Question.objects.get(id=question.id)  # this would give a Question.DoesNotExist exception if it did not exist
         self.assertEquals(response.status_code, 403)
+
+
+class SeleniumTests(StaticLiveServerTestCase):
+    """ Selenium tests for Firefox """
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.selenium = WebDriver()
+        cls.selenium.implicitly_wait(10)
+
+    @classmethod
+    def tearDownClass(cls):
+        # cls.selenium.quit()
+        super().tearDownClass()
+
+    def test_open(self):
+        url = self.live_server_url + "/polls/"
+        self.selenium.get(url)
+
